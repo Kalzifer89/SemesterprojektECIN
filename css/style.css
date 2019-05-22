@@ -1,0 +1,81 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100%;
+}
+
+header {
+    background-color:black;
+    color: white;
+    padding: 25px;
+}
+
+header a {
+  color: #999;
+  text-decoration: none;
+}
+
+header a:hover {
+  color: white;
+}
+
+#headermenu {
+  display: inline;
+}
+
+#loginarea {
+  display: inline;
+  text-align: right;
+  float: right;
+}
+
+#mehrspaltig {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+	background-color: silver;
+}
+
+nav {
+    flex: 1;
+    background-color: white;
+    padding: 15px;
+}
+
+nav ul {
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: green;
+}
+
+nav li {
+  height: 50px;
+  padding: 15 15 15 15;
+  border: 1px solid white;
+}
+
+article {
+    flex: 5;
+    background-color: white;
+    padding: 50px;
+}
+
+aside {
+	flex: 1;
+	background-color: white;
+}
+
+footer {
+	background-color: black;
+  padding: 25px;
+}
