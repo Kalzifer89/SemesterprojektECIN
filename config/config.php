@@ -17,5 +17,4 @@ $dbase="ecinquiz"; //Datenbankname
 $db_link = mysqli_connect($host, $user, $pass);
 mysqli_select_db($db_link, $dbase);
 
-
 ?>

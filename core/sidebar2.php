@@ -9,7 +9,12 @@
 ///////////////////////////////////////////////
 
 echo "Variablen Check <br>";
-echo "Login<br>";
-echo $_SESSION['eingelogt'];
-
+echo "Session<br>";
+echo print_r($_SESSION);
+echo "<br>";
+echo "Post<br>";
+echo print_r($_POST);
+echo "<br>";
+echo "Coockies<br>";
+echo print_r($_COOKIE);
 ?>

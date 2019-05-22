@@ -7,12 +7,14 @@
 // Stand        : 22.05.19                   //
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
+error_reporting(E_ALL);
 
-//Session Erstellen
 session_start();
 
 //Einbinden der Config Dateien
 include './config/config.php';
+//Einbinden der Login Mechanik
+include './core/sessioncontroller.php';
 
 echo "<head>\n";
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./css/style.css\">\n";
@@ -41,6 +43,5 @@ echo "    <footer>\n";
           include './core/footer.php';
 echo "    </footer>\n";
 echo "</div>";
-
 
 ?>

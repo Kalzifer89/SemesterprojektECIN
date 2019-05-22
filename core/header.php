@@ -8,15 +8,7 @@
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
 
-//Default Wert für Eingelogt festlegen (Nicht eingelogt)
-if(!isset($_SESSION['eingelogt']))
-  {
-    // Standard - Einstellung --------------------------
-    $_SESSION['eingelogt'] = false;
-  }
-
-
-
+//Menü der Seite in HTML
 echo "      <div id=\"headermenu\">\n";
 echo "        Svens Quiz\n";
 echo "        <a href=\"url\">Üben</a>\n";
@@ -24,8 +16,19 @@ echo "        <a href=\"url\">Übungen Verwalten</a>\n";
 echo "        <a href=\"url\">Statistik</a>\n";
 echo "        <a href=\"url\">Administrator</a>\n";
 echo "      </div>\n";
+
+//Benutzer Login Bereich im Header
 echo "      <div id=\"loginarea\">\n";
-echo "        sven.krumbeck@gmail.com  <a href=\"url\">LOGOUT</a>\n";
+
+//Wenn nicht Eingelogt, bitte Einloggen Anzeigen
+if ($_COOKIE['LoggedIn'] == "True") {
+  echo "<form action=\"index.php\" method=\"POST\">";
+    echo "<button name=\"ausloggen\" value=\"ausgelogt\" type=\"submit\">Ausloggen</button>";
+  echo "</form>";
+}
+else {
+  echo "Sie sind nicht eingelogt";
+}
 echo "      </div>\n";
 
 ?>
