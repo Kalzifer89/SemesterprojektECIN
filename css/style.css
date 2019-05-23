@@ -37,6 +37,11 @@ header a:hover {
   float: right;
 }
 
+#loginarea form {
+  display: inline;
+  margin-left: 25px;
+}
+
 #mehrspaltig {
   flex: 1;
   display: flex;

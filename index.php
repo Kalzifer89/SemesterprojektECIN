@@ -11,10 +11,13 @@ error_reporting(E_ALL);
 
 session_start();
 
+//Einbinden der Funktionen
+include './core/functions.php';
 //Einbinden der Config Dateien
 include './config/config.php';
 //Einbinden der Login Mechanik
 include './core/sessioncontroller.php';
+
 
 echo "<head>\n";
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./css/style.css\">\n";
