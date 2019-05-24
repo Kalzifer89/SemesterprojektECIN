@@ -11,7 +11,9 @@
 //Bei Klick auf Logout Buttion den Login Coockie Löschen
 if( isset($_POST['ausloggen']))
       {
-          setcookie("LoggedIn", "false", 0);
+          setcookie("LoggedIn", "", time() -3600);
+          setcookie("UserName", "",time() -3600);
+          session_destroy();
           echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
       }
 
@@ -28,12 +30,10 @@ if (isset($_POST['name'])) {
   $PasswortArray = mysqli_query ($db_link, $DatenbankAbfragePasswort);
 }
 
-// Vorbelegung der SESSION-Variablen -------
 // Erstaufruf des Programms ----------------
 // Aufruf der CAPTCHA-Funktion -------------
-if(!isset($_POST['wahl']))
+if(!isset($_POST['name']))
 {
-  $_SESSION['fehler'] = "";
   $_SESSION['name'] = "";
   $_SESSION['captcha'] = "";
   anzeige();
@@ -42,7 +42,6 @@ if(!isset($_POST['wahl']))
 // Zuweisungen nach submit -----------------
 if(isset($_POST['name']))
 {$_SESSION['name'] = $_POST['name'];}
-
 
 
 //Bei Erfolgreichen Login Login Cookie Erstellen ansonsten Fehlermeldung
@@ -68,11 +67,9 @@ if(empty ($_POST['name']) && empty ($_POST['passwort']))
   elseif (empty($_POST['captcha'])) {
     $Fehlermeldung ="Das Ergebniss muss eingeben werden";
   }
-  elseif (!empty($_POST['captcha'])) {
-    if( $_POST['captcha'] !=$_SESSION['ergebnis']) {
-      $Fehlermeldung ="Ergebniss ist Falsch";
+  elseif($_POST['captcha'] !=$_SESSION['ergebnis']) {
+    $Fehlermeldung ="Ergebniss ist Falsch";
     }
-  }
   else {
     $Fehlermeldung ="Sie sind erfolgreich eingelogt";
     //Eingelogt setzen

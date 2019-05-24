@@ -18,7 +18,6 @@ include './config/config.php';
 //Einbinden der Login Mechanik
 include './core/sessioncontroller.php';
 
-
 echo "<head>\n";
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./css/style.css\">\n";
 echo "<meta charset=\"UTF-8\">\n";

@@ -21,11 +21,13 @@ echo "      </div>\n";
 echo "      <div id=\"loginarea\">\n";
 
 //Wenn nicht Eingelogt, bitte Einloggen Anzeigen
-if ($_COOKIE['LoggedIn'] == "True") {
-  echo $_COOKIE['UserName'];
-  echo "<form action=\"index.php\" method=\"POST\">";
-    echo "<button name=\"ausloggen\" value=\"ausgelogt\" type=\"submit\">Ausloggen</button>";
-  echo "</form>";
+if (isset ($_COOKIE['LoggedIn'])) {
+  if ($_COOKIE['LoggedIn'] == "True") {
+    echo $_COOKIE['UserName'];
+    echo "<form action=\"index.php\" method=\"POST\">";
+      echo "<button name=\"ausloggen\" value=\"ausgelogt\" type=\"submit\">Ausloggen</button>";
+    echo "</form>";
+  }
 }
 else {
   echo "Sie sind nicht eingelogt";
