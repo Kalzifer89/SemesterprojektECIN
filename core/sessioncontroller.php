@@ -32,7 +32,7 @@ if (isset($_POST['name'])) {
 
 // Erstaufruf des Programms ----------------
 // Aufruf der CAPTCHA-Funktion -------------
-if(!isset($_POST['name']))
+if(!isset($_POST['name']) && !isset($_POST['registername']) )
 {
   $_SESSION['name'] = "";
   $_SESSION['captcha'] = "";

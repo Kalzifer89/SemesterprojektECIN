@@ -14,10 +14,12 @@ if (isset($_COOKIE['LoggedIn'])) {
     echo "Erfolreich Eingelogt";
   }
 }
+//Bei Drucken auf den Registerungsbutton den Registrierungsdialog anzeigen
 elseif (isset($_POST['register'])) {
     captcha ();
     registerArea();
 }
+//Ansonsten den Login Bereich und den Registrerungsbutton anzeigen
 else {
   captcha ();
   loginArea();

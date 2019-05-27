@@ -8,8 +8,24 @@
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
 
+//Datenbankzugriff
+$host="localhost"; //Hostname
+$user="root"; //Benutzername
+$pass=""; //Passwort
+$dbase="ecinquiz"; //Datenbankname
+
+$db_link = mysqli_connect($host, $user, $pass);
+mysqli_select_db($db_link, $dbase);
+
+
+if (isset($_POST['registername'])) {
+  $registername = $_POST['registername'];
+  $registermail = $_POST['registermail'];
+  $registerpassword = md5($_POST['registerpassword']);
+}
+
 //Bei Erfolgreichen Login Login Cookie Erstellen ansonsten Fehlermeldung
-//Überprüfung ob Name und Passwort ausgefüllt sind
+//Überprüfung ob Name Passwort und EMail ausgefüllt sind
 if(empty ($_POST['registername']) && empty ($_POST['registeremail']) && empty ($_POST['registerpassword']))
   {
     $RegisterFehlermeldung ="Namen Passwort und Email fehlen";
@@ -39,9 +55,12 @@ if(empty ($_POST['registername']) && empty ($_POST['registeremail']) && empty ($
     }
   else {
     $RegisterFehlermeldung ="Sie sind erfolgreich eingelogt";
+    //Den neuen User in die Datenbank eintragen
+    $DatenbankRegistierungUser = "INSERT INTO users (UserName, userMail, userPassword, userAdmin) VALUES ('$registername','$registermail','$registerpassword',0)";
+    $UserArray = mysqli_query ($db_link, $DatenbankRegistierungUser);
     //Eingelogt setzen
     setcookie("LoggedIn", "True", 0);
-    setcookie("UserName", "$Username",0);
+    setcookie("UserName", "$registername",0);
     echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
   }
 
