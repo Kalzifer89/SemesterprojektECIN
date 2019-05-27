@@ -64,6 +64,15 @@ function loginArea()
   echo "        </table>\n";
 }
 
+//Funktion für den Regestrien button
+function registerButtion ()
+{
+  echo "<br>Sie haben noch keinen Account? Registrieren sie sich jetzt:<br>";
+  echo "<form method=\"post\" action=\"index.php\">\n";
+  echo "<button name=\"register\" type=\"submit\">Registrieren</button>\n";
+  echo "</form>\n";
+}
+
 //Funktion zum Anzeigen des Registrierungsformulars
 function registerArea()
 {
@@ -101,4 +110,24 @@ function registerArea()
   echo "</table>\n";
 }
 
+function Schwerikeitsgrad()
+{
+  echo "Bitte wählen sie einen Schwerikeitsgrad aus: <br>";
+  echo "<form class=\"Schwerikeitsgrad\" action=\"index.php\" method=\"post\">\n";
+  echo "<table>\n";
+  echo "  <tr>\n";
+  echo "  <td><button type=\"submit\" name=\"Schwerikeitsgrad\" value=\"leicht\">leicht</button></td>  \n";
+  echo "  <td>2 Mögliche Antworten, eine davon richtig. 50% Gewinnchance</td>\n";
+  echo "  </tr>\n";
+  echo "  <tr>\n";
+  echo "  <td><button type=\"submit\" name=\"Schwerikeitsgrad\" value=\"mittel\">mittel</button></td>  \n";
+  echo "  <td>4 Mögliche Antworten, eine davon richtig. 25% Gewinnchance</td>\n";
+  echo "  </tr>\n";
+  echo "  <tr>\n";
+  echo "    <td><button type=\"submit\" name=\"Schwerikeitsgrad\" value=\"hoch\">hoch</button></td>\n";
+  echo "    <td>Keine vorgegebene Antwort, Freie Texteingabe.</td>\n";
+  echo "  </tr>\n";
+  echo "</table>  \n";
+  echo "</form>";
+}
 ?>

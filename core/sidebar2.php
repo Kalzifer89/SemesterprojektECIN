@@ -9,12 +9,12 @@
 ///////////////////////////////////////////////
 
 echo "Variablen Check <br>";
-echo "Session<br>";
+echo "<b>Session</b><br>";
 echo print_r($_SESSION);
 echo "<br>";
-echo "Post<br>";
+echo "<b>Post</b><br>";
 echo print_r($_POST);
 echo "<br>";
-echo "Coockies<br>";
+echo "<b>Coockies</b><br>";
 echo print_r($_COOKIE);
 ?>

@@ -13,6 +13,7 @@ if( isset($_POST['ausloggen']))
       {
           setcookie("LoggedIn", "", time() -3600);
           setcookie("UserName", "",time() -3600);
+          //Am Ende hier alle Coockies die erstellt wurden einmal killen
           session_destroy();
           echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
       }

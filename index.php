@@ -7,6 +7,8 @@
 // Stand        : 22.05.19                   //
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
+header("Content-Type: text/html; charset=utf-8");
+
 error_reporting(E_ALL);
 
 session_start();

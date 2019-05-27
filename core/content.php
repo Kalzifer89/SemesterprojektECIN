@@ -11,7 +11,7 @@
 //Anzeigen des Einlog Formular wenn der LoginCoockie auf False steht
 if (isset($_COOKIE['LoggedIn'])) {
   if ($_COOKIE['LoggedIn'] == "True") {
-    echo "Erfolreich Eingelogt";
+    include './core/quiz.php';
   }
 }
 //Bei Drucken auf den Registerungsbutton den Registrierungsdialog anzeigen
@@ -23,10 +23,7 @@ elseif (isset($_POST['register'])) {
 else {
   captcha ();
   loginArea();
-  echo "<br>Sie haben noch keinen Account? Registrieren sie sich jetzt:<br>";
-  echo "<form method=\"post\" action=\"index.php\">\n";
-  echo "<button name=\"register\" type=\"submit\">Registrieren</button>\n";
-  echo "</form>\n";
+  registerButtion ();
 
 }
 
