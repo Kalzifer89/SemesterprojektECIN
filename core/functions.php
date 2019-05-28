@@ -110,7 +110,7 @@ function registerArea()
   echo "</table>\n";
 }
 
-function Schwerikeitsgrad()
+function schwerikeitsgrad()
 {
   echo "Bitte wählen sie einen Schwerikeitsgrad aus: <br>";
   echo "<form class=\"Schwerikeitsgrad\" action=\"index.php\" method=\"post\">\n";
@@ -129,5 +129,36 @@ function Schwerikeitsgrad()
   echo "  </tr>\n";
   echo "</table>  \n";
   echo "</form>";
+}
+
+function quizleicht ()
+{
+  global $FragenArray;
+          if (mysqli_num_rows ($FragenArray) > 0)
+              {
+
+      // aktuelles Tupel ausgeben --------------------------------------------------
+                  while ($zeile = mysqli_fetch_array($FragenArray))
+                   {
+          echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
+          echo "  <table>\n";
+          echo "    <tr>\n";
+          echo "      <td colspan=\"4\">".$zeile['questionContent']."</td>\n";
+          echo "    </tr>\n";
+          echo "    <tr>\n";
+          echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer1']."\">".$zeile['questionAnswer1']."</button></td>\n";
+          echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer2']."\">".$zeile['questionAnswer2']."</button></td>\n";
+          echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer3']."\">".$zeile['questionAnswer3']."</button></td>\n";
+          echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer4']."\">".$zeile['questionAnswer4']."</button></td>\n";
+          echo "      <input type=\"hidden\" name=\"rightanswer\" value=\"".$zeile['questionAnswerRight']."\">";
+                  }
+             }
+          echo "    </tr>\n";
+          echo "  </table>\n";
+          echo "</form>";
+}
+
+function nextQuestion() {
+  
 }
 ?>

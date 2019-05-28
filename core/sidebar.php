@@ -16,7 +16,7 @@ if(isset($_POST['category']))
       }
 
 //Datenbank Abfrage nach Kategorien
-$DatenbankAbfrageKategorien= "SELECT categoryName FROM categorys";
+$DatenbankAbfrageKategorien= "SELECT categoryName, categoryID FROM categorys";
 $KategorieArray = mysqli_query ($db_link, $DatenbankAbfrageKategorien);
 
 echo "            -Kategorien-<br>\n";
@@ -28,10 +28,12 @@ echo "<button type=\"submnit\" name=\"category\" value=\"alle\">alle</button> <b
 // aktuelles Tupel ausgeben --------------------------------------------------
             while ($zeile = mysqli_fetch_array($KategorieArray))
              {
-               echo "<button type=\"submnit\" name=\"category\" value=\"".$zeile['categoryName']."\">".$zeile['categoryName']."</button> <br>  \n";
+               echo "<button type=\"submnit\" name=\"category\" value=\"".$zeile['categoryID']."\">".$zeile['categoryName']."</button> <br>  \n";
              }
         }
 echo "</form>";
+echo "<hr>";
+schwerikeitsgrad();
 
 
 

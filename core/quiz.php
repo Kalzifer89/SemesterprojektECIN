@@ -8,8 +8,6 @@
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
 
-$Category = 1;
-
 //Wenn Schwerikeitsgrad gewählt, diesen in Cookie speichern
 if (isset($_POST['Schwerikeitsgrad']) ) {
             setcookie("Schwerikeitsgrad", $_POST['Schwerikeitsgrad'], 0);
@@ -23,38 +21,27 @@ if(!isset($_COOKIE['category']))
       }
       //Wenn kein Schwerikeitsgrad geäwhlt ist um Auswahl bitten:
       elseif (!isset($_COOKIE['Schwerikeitsgrad']) ) {
-        Schwerikeitsgrad();
+        schwerikeitsgrad();
+      }
+      //Wenn die Frage beantwortet wurde
+      elseif (isset($_POST['answer'])) {
+        //wenn die Frage Richtig Beantwortet wurde
+        if ($_POST['answer'] == $_POST['rightanswer']) {
+          echo "Ihre Antwort ".$_POST['answer']." ist richtig";
+        }
+        //Wenn die Frage nicht richtig beantwortet wurde
+        else {
+          echo "Ihre Antwort ".$_POST['answer']."ist leider falsch, richtig wäre ".$_POST['rightanswer']." gewesen.";
+        }
       }
       //Wenn beides eingestellt ist, das Quiz start
       else {
-
-        //Datenbank Abfrage nach Fragen
-        $DatenbankAbfrageFragen= "SELECT * FROM questions WHERE questionID = 1";
+        //Kategorie als Variable
+        $Category = $_COOKIE['category'];
+        //Datenbank Abfrage nach Fragen aus der Kategorie und Zufällig eine Frage auswählen
+        $DatenbankAbfrageFragen= "SELECT * FROM questions WHERE questionCategory = '$Category' ORDER BY RAND() LIMIT 0,1";
         $FragenArray = mysqli_query ($db_link, $DatenbankAbfrageFragen);
-
-
-        if (mysqli_num_rows ($FragenArray) > 0)
-            {
-
-    // aktuelles Tupel ausgeben --------------------------------------------------
-                while ($zeile = mysqli_fetch_array($FragenArray))
-                 {
-        echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
-        echo "  <table>\n";
-        echo "    <tr>\n";
-        echo "      <td colspan=\"4\">".$zeile['questionContent']."</td>\n";
-        echo "    </tr>\n";
-        echo "    <tr>\n";
-        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer1']."\">".$zeile['questionAnswer1']."</button></td>\n";
-        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer2']."\">".$zeile['questionAnswer2']."</button></td>\n";
-        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer3']."\">".$zeile['questionAnswer3']."</button></td>\n";
-        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer4']."\">".$zeile['questionAnswer4']."</button></td>\n";
-                }
-           }
-        echo "    </tr>\n";
-        echo "  </table>\n";
-
-        echo "</form>";
+        quizleicht ();
       }
 
 
