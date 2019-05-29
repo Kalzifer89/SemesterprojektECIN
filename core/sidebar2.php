@@ -17,4 +17,22 @@ echo print_r($_POST);
 echo "<br>";
 echo "<b>Coockies</b><br>";
 echo print_r($_COOKIE);
+echo "<hr>";
+//Score anzeigen
+//User ID an Variable Übergeben
+$userID = $_COOKIE['UserID'];
+//Abfrage nach Score//
+$DatenbankAbfrageScore = "SELECT * FROM score WHERE userID LIKE '$userID'";
+$ScoreArray = mysqli_query ($db_link, $DatenbankAbfrageScore);
+// Wenn mehr als 0 Tupel vorhanden sind -------------------------------
+    if (mysqli_num_rows ($ScoreArray) > 0)
+        {
+// aktuelles Tupel ausgeben --------------------------------------------------
+            while ($zeile = mysqli_fetch_array($ScoreArray))
+             {
+               echo "Punktestand: ".$zeile['score']." Punkte<br>";
+               echo "Anzahl richtig beantworter Fragen: ".$zeile['questionsRight']."<br>";
+               echo "Anzahl falsch beantworter Fragen: ".$zeile['questionsWrong']."<br>";
+             }
+        }
 ?>

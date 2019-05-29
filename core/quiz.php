@@ -23,24 +23,32 @@ if(!isset($_COOKIE['category']))
       elseif (!isset($_COOKIE['Schwerikeitsgrad']) ) {
         schwerikeitsgrad();
       }
+      //Wenn der Nächste Frage Knopf gedrückt wurde
+      elseif (isset($_POST['nextQuestion'])) {
+        $Category = $_COOKIE['category'];
+        randomQuestion();
+        quizleicht ();
+      }
       //Wenn die Frage beantwortet wurde
       elseif (isset($_POST['answer'])) {
         //wenn die Frage Richtig Beantwortet wurde
         if ($_POST['answer'] == $_POST['rightanswer']) {
           echo "Ihre Antwort ".$_POST['answer']." ist richtig";
+          scoreup($_COOKIE['UserID'], $ScoreMiddle);
+          nextQuestion();
         }
         //Wenn die Frage nicht richtig beantwortet wurde
         else {
-          echo "Ihre Antwort ".$_POST['answer']."ist leider falsch, richtig wäre ".$_POST['rightanswer']." gewesen.";
+          echo "Ihre Antwort ".$_POST['answer']." ist leider falsch, richtig wäre ".$_POST['rightanswer']." gewesen.";
+          wrongAnser($user);
+          nextQuestion();
         }
       }
       //Wenn beides eingestellt ist, das Quiz start
       else {
         //Kategorie als Variable
         $Category = $_COOKIE['category'];
-        //Datenbank Abfrage nach Fragen aus der Kategorie und Zufällig eine Frage auswählen
-        $DatenbankAbfrageFragen= "SELECT * FROM questions WHERE questionCategory = '$Category' ORDER BY RAND() LIMIT 0,1";
-        $FragenArray = mysqli_query ($db_link, $DatenbankAbfrageFragen);
+        randomQuestion();
         quizleicht ();
       }
 

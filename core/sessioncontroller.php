@@ -29,6 +29,9 @@ if (isset($_POST['name'])) {
   //Datenbank Abfrage nach Passwort
   $DatenbankAbfragePasswort = "SELECT UserPassword FROM users WHERE UserPassword LIKE '$Passwort';";
   $PasswortArray = mysqli_query ($db_link, $DatenbankAbfragePasswort);
+  //Abfrage nach User ID //
+  $DatenbankAbfrageUserID = "SELECT userID FROM users WHERE userName LIKE '$Username'";
+  $UserIDArray = mysqli_query ($db_link, $DatenbankAbfrageUserID);
 }
 
 // Erstaufruf des Programms ----------------
@@ -75,7 +78,13 @@ if(empty ($_POST['name']) && empty ($_POST['passwort']))
     $Fehlermeldung ="Sie sind erfolgreich eingelogt";
     //Eingelogt setzen
     setcookie("LoggedIn", "True", 0);
+    //username setzen
     setcookie("UserName", "$Username",0);
+    //User ID an Coockie Übergeben
+    while ($zeile2 = mysqli_fetch_array($UserIDArray))
+             {
+               setcookie("UserID", $zeile2['userID'], 0);
+             }
     echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
   }
 

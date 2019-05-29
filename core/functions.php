@@ -15,8 +15,7 @@ function anzeige()
   $_SESSION['wert1'] = rand(0,10);
   $_SESSION['wert2'] = rand(0,10);
   // Berechnung des Ergebnisses ------------
-  $_SESSION['ergebnis'] = $_SESSION['wert1']
-  + $_SESSION['wert2'];
+  $_SESSION['ergebnis'] = $_SESSION['wert1'] + $_SESSION['wert2'];
 }
 
 //Funktion zum Erzeugen eines Captcha Bildes
@@ -159,6 +158,31 @@ function quizleicht ()
 }
 
 function nextQuestion() {
-  
+  echo "<form class=\"nextQuestion\" action=\"index.php\" method=\"post\">\n";
+  echo "  <button type=\"submit\" name=\"nextQuestion\">Nächste Frage</button>\n";
+  echo "</form>";
+
+}
+
+function randomQuestion() {
+  global $Category;
+  global $DatenbankAbfrageUser;
+  global $FragenArray;
+  global $db_link;
+  //Datenbank Abfrage nach Fragen aus der Kategorie und Zufällig eine Frage auswählen
+  $DatenbankAbfrageFragen= "SELECT * FROM questions WHERE questionCategory = '$Category' ORDER BY RAND() LIMIT 0,1";
+  $FragenArray = mysqli_query ($db_link, $DatenbankAbfrageFragen);
+}
+
+function scoreup($user, $score) {
+  global $db_link;
+  $DatenbankÄnderungPunkte = "UPDATE score SET score = score + $score, questionsRight = questionsRight + 1 WHERE userID = $user";
+  $ÄnderungPunkte = mysqli_query ($db_link, $DatenbankÄnderungPunkte );
+}
+
+function wrongAnser($user) {
+  global $db_link;
+  $DatenbankÄnderungFrageFalsch = "UPDATE score SET questionsWrong = questionsWrong + 1 WHERE userID = $user";
+  $ÄnderungPunkte = mysqli_query ($db_link, $DatenbankÄnderungFrageFalsch );
 }
 ?>
