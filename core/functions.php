@@ -46,7 +46,7 @@ function loginArea()
   echo "            </tr>\n";
   echo "            <tr>\n";
   echo "              <td>Passwort:</td>\n";
-  echo "              <td><input type=\"text\" name=\"passwort\"></td>\n";
+  echo "              <td><input type=\"password\" name=\"passwort\"></td>\n";
   echo "            </tr>\n";
   echo "            <tr>\n";
   echo "              <td>Captcha</td>\n";
@@ -78,7 +78,7 @@ function registerArea()
   include './core/register.php';
   echo "\n";
   echo "<table>\n";
-  echo "<form method=\"post\" action=\"index.php\">\n";
+  echo "<form method=\"post\" class=\"register\" action=\"index.php\">\n";
   echo "   <tr>\n";
   echo "    <td>".$RegisterFehlermeldung."</td>\n";
   echo "   </tr>\n";
@@ -109,6 +109,7 @@ function registerArea()
   echo "</table>\n";
 }
 
+//Funktion um den Schwerikeitsgrad auszuwählen
 function schwerikeitsgrad()
 {
   echo "Bitte wählen sie einen Schwerikeitsgrad aus: <br>";
@@ -130,7 +131,8 @@ function schwerikeitsgrad()
   echo "</form>";
 }
 
-function quizleicht ()
+//Funktion für das Quit auf Mittelerem Schwerikeitsgrad
+function quizmittel ()
 {
   global $FragenArray;
           if (mysqli_num_rows ($FragenArray) > 0)
@@ -157,6 +159,82 @@ function quizleicht ()
           echo "</form>";
 }
 
+//funktion für das Quiz auf Leicht
+function quizleicht ()
+{
+  global $FragenArray;
+          if (mysqli_num_rows ($FragenArray) > 0)
+              {
+
+      // aktuelles Tupel ausgeben --------------------------------------------------
+                  while ($zeile = mysqli_fetch_array($FragenArray))
+                   {
+                      echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
+                      echo "  <table>\n";
+                      echo "    <tr>\n";
+                      echo "      <td colspan=\"4\">".$zeile['questionContent']."</td>\n";
+                      echo "    </tr>\n";
+                      echo "    <tr>\n";
+                      //Zufällig bestimmen ob die Richtige Antwort als erstes oder als Letztes Kommt.
+                      $zufall = rand(0, 1);
+                      if ($zufall == 1)
+                      {
+                        echo "       <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswerRight']."\">".$zeile['questionAnswerRight']."</button></td>\n";
+                      }
+                      //ÜBerprüfung damit die Richtige Antwort nicht zufällig 2 mal ausgegeben wird.
+                      if ($zeile['questionAnswer1'] == $zeile['questionAnswerRight']) {
+                        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer2']."\">".$zeile['questionAnswer2']."</button></td>\n";
+                      }
+                      elseif ($zeile['questionAnswer2'] == $zeile['questionAnswerRight']) {
+                        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer3']."\">".$zeile['questionAnswer3']."</button></td>\n";
+                      }
+                      elseif ($zeile['questionAnswer3'] == $zeile['questionAnswerRight']) {
+                        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer4']."\">".$zeile['questionAnswer4']."</button></td>\n";
+                      }
+                      elseif ($zeile['questionAnswer4'] == $zeile['questionAnswerRight']) {
+                        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer1']."\">".$zeile['questionAnswer1']."</button></td>\n";
+                      }
+                      //Zufällig bestimmen ob die Richtige Antwort als erstes oder als Letztes Kommt.
+                      if ($zufall == 0)
+                      {
+                        echo "     <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswerRight']."\">".$zeile['questionAnswerRight']."</button></td>\n";
+                      }
+                      echo "      <input type=\"hidden\" name=\"rightanswer\" value=\"".$zeile['questionAnswerRight']."\">";
+
+                  }
+                echo "    </tr>\n";
+                echo "  </table>\n";
+                echo "</form>";
+             }
+}
+
+//Funktion für das Quiz auf Schwer
+function quizschwer ()
+{
+  global $FragenArray;
+          if (mysqli_num_rows ($FragenArray) > 0)
+              {
+
+      // aktuelles Tupel ausgeben --------------------------------------------------
+                  while ($zeile = mysqli_fetch_array($FragenArray))
+                   {
+          echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
+          echo "  <table>\n";
+          echo "    <tr>\n";
+          echo "      <td colspan=\"4\">".$zeile['questionContent']."</td>\n";
+          echo "    </tr>\n";
+          echo "    <tr>\n";
+          echo "      <td><input type=\"text\" name=\"answer\"></td>\n";
+          echo "      <input type=\"hidden\" name=\"rightanswer\" value=\"".$zeile['questionAnswerRight']."\">";
+          echo "      <td><button type=\"submit\">Absenden</button></td>\n";
+                  }
+             }
+          echo "    </tr>\n";
+          echo "  </table>\n";
+          echo "</form>";
+}
+
+//Funktion für den Nächste Frage Button
 function nextQuestion() {
   echo "<form class=\"nextQuestion\" action=\"index.php\" method=\"post\">\n";
   echo "  <button type=\"submit\" name=\"nextQuestion\">Nächste Frage</button>\n";
@@ -164,6 +242,7 @@ function nextQuestion() {
 
 }
 
+//Funktion für eine Zufällige Frage
 function randomQuestion() {
   global $Category;
   global $DatenbankAbfrageUser;
@@ -174,13 +253,15 @@ function randomQuestion() {
   $FragenArray = mysqli_query ($db_link, $DatenbankAbfrageFragen);
 }
 
+//Funktion zum Erhöhen der Punktezahl für einen User
 function scoreup($user, $score) {
   global $db_link;
   $DatenbankÄnderungPunkte = "UPDATE score SET score = score + $score, questionsRight = questionsRight + 1 WHERE userID = $user";
   $ÄnderungPunkte = mysqli_query ($db_link, $DatenbankÄnderungPunkte );
 }
 
-function wrongAnser($user) {
+//Funktionen um die Falschen Antworten zu speichern
+function wrongAnswer($user) {
   global $db_link;
   $DatenbankÄnderungFrageFalsch = "UPDATE score SET questionsWrong = questionsWrong + 1 WHERE userID = $user";
   $ÄnderungPunkte = mysqli_query ($db_link, $DatenbankÄnderungFrageFalsch );

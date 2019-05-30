@@ -2,11 +2,12 @@
 ///////////////////////////////////////////////
 // Semesterproject - ECIN                     //
 // Fachbereich Medien FH-Kiel - 4. Semester  //
-// Beschreibung : Hauotseite                 //
+// Beschreibung : Admin Bereih                //
 // Ersteller    : Sven Krumbeck              //
 // Stand        : 22.05.19                   //
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
+header("Content-Type: text/html; charset=utf-8");
 
 error_reporting(E_ALL);
 
@@ -35,7 +36,7 @@ echo "        <nav>\n";
 echo "        </nav>\n";
 echo "        <article>";
               //Einbinden des Content Bereiches
-              include './core/content.php';
+              include './core/edit.php';
 echo "        </article>\n";
 echo "        <aside>";
               include './core/sidebar2.php';

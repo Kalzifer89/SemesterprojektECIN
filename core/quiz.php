@@ -27,20 +27,37 @@ if(!isset($_COOKIE['category']))
       elseif (isset($_POST['nextQuestion'])) {
         $Category = $_COOKIE['category'];
         randomQuestion();
-        quizleicht ();
+        switch ($_COOKIE['Schwerikeitsgrad']) {
+            case "leicht":
+              quizschwer ();
+              break;
+
+            case "mittel":
+              quizmittel ();
+              break;
+
+            case "hoch":
+              quizschwer ();
+              break;
+        }
+
       }
       //Wenn die Frage beantwortet wurde
       elseif (isset($_POST['answer'])) {
         //wenn die Frage Richtig Beantwortet wurde
         if ($_POST['answer'] == $_POST['rightanswer']) {
           echo "Ihre Antwort ".$_POST['answer']." ist richtig";
+          //Score UP Funktion erhöht den Punktestand um den Wert der in der Config Datei eingestellt ist
           scoreup($_COOKIE['UserID'], $ScoreMiddle);
+          //Button für nächste Frage herbeirufen
           nextQuestion();
         }
         //Wenn die Frage nicht richtig beantwortet wurde
         else {
           echo "Ihre Antwort ".$_POST['answer']." ist leider falsch, richtig wäre ".$_POST['rightanswer']." gewesen.";
-          wrongAnser($user);
+          //Falsche Frage in Datenbank speichern
+          wrongAnswer($_COOKIE['UserID']);
+          //Button für nächste Frage herbeirufen
           nextQuestion();
         }
       }
@@ -49,7 +66,17 @@ if(!isset($_COOKIE['category']))
         //Kategorie als Variable
         $Category = $_COOKIE['category'];
         randomQuestion();
-        quizleicht ();
+        switch ($_COOKIE['Schwerikeitsgrad']) {
+            case "leicht":
+              quizleicht ();
+              break;
+            case "mittel":
+              quizmittel ();
+              break;
+            case "hoch":
+              quizschwer ();
+              break;
+        }
       }
 
 
