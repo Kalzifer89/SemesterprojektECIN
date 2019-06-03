@@ -266,4 +266,17 @@ function wrongAnswer($user) {
   $DatenbankÄnderungFrageFalsch = "UPDATE score SET questionsWrong = questionsWrong + 1 WHERE userID = $user";
   $ÄnderungPunkte = mysqli_query ($db_link, $DatenbankÄnderungFrageFalsch );
 }
+
+function weiterbuttonadmin(){
+  echo "<form class=\"nextbutton\" action=\"admin.php\" method=\"post\">\n";
+  echo "  <button type=\"submit\" name=\"nextButton\">weiter</button>\n";
+  echo "</form>";
+}
+
+function zurückbuttonadmin(){
+  echo "<form class=\"backbutton\" action=\"admin.php\" method=\"post\">\n";
+  echo "  <button type=\"submit\" name=\"backButton\">zurück</button>\n";
+  echo "</form>";
+}
+
 ?>

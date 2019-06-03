@@ -54,13 +54,10 @@ if(empty ($_POST['registername']) && empty ($_POST['registeremail']) && empty ($
     $RegisterFehlermeldung  ="Ergebniss ist Falsch";
     }
   else {
-    $RegisterFehlermeldung ="Sie sind erfolgreich eingelogt";
+    $RegisterFehlermeldung ="Sie sind erfolgreich eingelogt, bitte melden sie sich jetzt an.";
     //Den neuen User in die Datenbank eintragen
     $DatenbankRegistierungUser = "INSERT INTO users (UserName, userMail, userPassword, userAdmin) VALUES ('$registername','$registermail','$registerpassword',0)";
     $UserArray = mysqli_query ($db_link, $DatenbankRegistierungUser);
-    //Eingelogt setzen
-    setcookie("LoggedIn", "True", 0);
-    setcookie("UserName", "$registername",0);
     echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
   }
 
