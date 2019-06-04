@@ -29,7 +29,7 @@ if(!isset($_COOKIE['category']))
         randomQuestion();
         switch ($_COOKIE['Schwerikeitsgrad']) {
             case "leicht":
-              quizschwer ();
+              quizleicht ();
               break;
 
             case "mittel":

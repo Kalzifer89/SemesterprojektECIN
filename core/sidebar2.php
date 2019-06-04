@@ -21,7 +21,7 @@ echo "<hr>";
 //Score anzeigen
 //User ID an Variable Übergeben wenn gesetzt
 if (isset($_COOKIE['UserID'])) {
-  
+
   $userID = $_COOKIE['UserID'];
   $DatenbankAbfrageScore = "SELECT * FROM score WHERE userID LIKE '$userID'";
   $ScoreArray = mysqli_query ($db_link, $DatenbankAbfrageScore);
@@ -45,4 +45,5 @@ if (isset($_COOKIE['UserID'])) {
           }
         }
   }
+  statsbutton();
 ?>

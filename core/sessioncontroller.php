@@ -37,13 +37,15 @@ if (isset($_POST['name'])) {
   $UserIDArray = mysqli_query ($db_link, $DatenbankAbfrageUserID);
 }
 
-// Erstaufruf des Programms ----------------
+// Den Captcha resetten bzw nicht resetten
 // Aufruf der CAPTCHA-Funktion -------------
-if(!isset($_POST['name']) && !isset($_POST['registername']) )
-{
-  $_SESSION['name'] = "";
-  $_SESSION['captcha'] = "";
-  anzeige();
+if (!isset($_COOKIE['LoggedIn'])) {
+  if(!isset($_POST['name']) && !isset($_POST['registername']) )
+  {
+    $_SESSION['name'] = "";
+    $_SESSION['captcha'] = "";
+    anzeige();
+  }
 }
 
 // Zuweisungen nach submit -----------------

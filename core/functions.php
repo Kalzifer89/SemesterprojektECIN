@@ -248,8 +248,15 @@ function randomQuestion() {
   global $DatenbankAbfrageUser;
   global $FragenArray;
   global $db_link;
+  if ($Category == 'alle') {
+      //Datenbank Abfrage nach Fragen aus allen Kategorien und Zufällig eine Frage auswählen
+    $DatenbankAbfrageFragen= "SELECT * FROM questions ORDER BY RAND() LIMIT 0,1";
+  }
+  else {
+      //Datenbank Abfrage nach Fragen aus der Kategorie und Zufällig eine Frage auswählen
+    $DatenbankAbfrageFragen= "SELECT * FROM questions WHERE questionCategory = '$Category' ORDER BY RAND() LIMIT 0,1";
+  }
   //Datenbank Abfrage nach Fragen aus der Kategorie und Zufällig eine Frage auswählen
-  $DatenbankAbfrageFragen= "SELECT * FROM questions WHERE questionCategory = '$Category' ORDER BY RAND() LIMIT 0,1";
   $FragenArray = mysqli_query ($db_link, $DatenbankAbfrageFragen);
 }
 
@@ -278,5 +285,18 @@ function zurückbuttonadmin(){
   echo "  <button type=\"submit\" name=\"backButton\">zurück</button>\n";
   echo "</form>";
 }
+
+function zurückbutton(){
+  echo "<form class=\"backbutton\" action=\"index.php\" method=\"post\">\n";
+  echo "  <button type=\"submit\" name=\"backButton\">zurück</button>\n";
+  echo "</form>";
+}
+
+function statsbutton(){
+  echo "<form class=\"statsbutton\" action=\"index.php\" method=\"post\">\n";
+  echo "  <button type=\"submit\" name=\"stats\">Statistik Anzeigen</button>\n";
+  echo "</form>";
+}
+
 
 ?>
