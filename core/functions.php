@@ -35,7 +35,8 @@ function loginArea()
 {
   //Ermöglicht es Fehlermeldung Global Anzusprechen
   global $Fehlermeldung;
-  echo "          <table>\n";
+  echo "<h2>Anmelden</h2>";
+  echo "          <table class=\"loginarea\">\n";
   echo "           <form action=\"index.php\" method=\"POST\">";
   echo "            <tr>\n";
   echo "              <td>".$Fehlermeldung."</td>\n";
@@ -57,7 +58,7 @@ function loginArea()
   echo "              <td><input type=\"text\" name=\"captcha\" value=\"Eingabe Ergebniss\"></td>\n";
   echo "            </tr>\n";
   echo "            <tr>\n";
-  echo "              <td><input type=\"submit\" value=\"Anmelden\"></td>\n";
+  echo "              <td><button name=\"Anmelden\" class=\"button\" type=\"submit\">Anmelden</button>\n</td>\n";
   echo "            </tr>\n";
   echo "          </form>\n";
   echo "        </table>\n";
@@ -68,7 +69,7 @@ function registerButtion ()
 {
   echo "<br>Sie haben noch keinen Account? Registrieren sie sich jetzt:<br>";
   echo "<form method=\"post\" action=\"index.php\">\n";
-  echo "<button name=\"register\" type=\"submit\">Registrieren</button>\n";
+  echo "<button name=\"register\" class=\"button\" type=\"submit\">Registrieren</button>\n";
   echo "</form>\n";
 }
 

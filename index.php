@@ -22,6 +22,7 @@ include './core/sessioncontroller.php';
 echo "<head>\n";
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./css/style.css\">\n";
 echo "<meta charset=\"UTF-8\">\n";
+echo "<title>Svens Quiz</title>";
 echo "</head>\n";
 echo "<div id=\"wrapper\">\n";
 echo "    <header>\n";

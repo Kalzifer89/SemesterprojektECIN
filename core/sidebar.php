@@ -9,6 +9,7 @@
 ///////////////////////////////////////////////
 
 //Auswahl der Kategorie in Coockie speichern
+
 if(isset($_POST['category']))
       {
           setcookie("category", $_POST['category'], 0);

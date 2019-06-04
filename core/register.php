@@ -7,16 +7,7 @@
 // Stand        : 23.05.19                   //
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
-
-//Datenbankzugriff
-$host="localhost"; //Hostname
-$user="root"; //Benutzername
-$pass=""; //Passwort
-$dbase="ecinquiz"; //Datenbankname
-
-$db_link = mysqli_connect($host, $user, $pass);
-mysqli_select_db($db_link, $dbase);
-
+include './config/config.php';
 
 if (isset($_POST['registername'])) {
   $registername = $_POST['registername'];
