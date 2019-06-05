@@ -9,14 +9,14 @@
 ///////////////////////////////////////////////
 
 //Menü der Seite in HTML
+echo "Svens Quiz";
 echo "      <div id=\"headermenu\">\n";
-echo "        Svens Quiz\n";
-echo "        <a href=\"url\">Üben</a>\n";
-echo "        <a href=\"url\">Übungen Verwalten</a>\n";
-echo "        <a href=\"url\">Statistik</a>\n";
-echo "        <a href=\"url\">Administrator</a>\n";
+echo "        <form action=\"index.php\" method=\"POST\">";
+echo "        <button name=\"nextQuestion\" value=\"nextQuestiont\" type=\"submit\">Quiz</button>";
+echo "        <button name=\"stats\" value=\"stats\" type=\"submit\">Statistik</button>";
+echo "        <button name=\"admin\" value=\"admin\" type=\"submit\">Admin</button>";
+echo "        </form>";
 echo "      </div>\n";
-
 //Benutzer Login Bereich im Header
 echo "      <div id=\"loginarea\">\n";
 

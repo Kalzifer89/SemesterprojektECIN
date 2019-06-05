@@ -46,19 +46,38 @@ if(!isset($_COOKIE['category']))
       elseif (isset($_POST['answer'])) {
         //wenn die Frage Richtig Beantwortet wurde
         if ($_POST['answer'] == $_POST['rightanswer']) {
-          echo "Ihre Antwort ".$_POST['answer']." ist richtig";
+          echo "<h2>Antwort</h2>";
+          echo "<hr>";
+          echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
+          echo "  <table>\n";
+          echo "    <tr>\n";
+          echo "      <td colspan=\"4\" class=\"question\">Ihre Antwort <span class=\"green\">".$_POST['answer']." ist richtig</span></td>\n";
+          echo "    </tr>\n";
+          echo "    <tr>\n";
+          echo "      <td><button type=\"submit\" class=\"answer\" name=\"nextQuestion\">Nächste Frage</button></td>\n";
+          echo "    </tr>\n";
+          echo "</table>";
+          echo "</form>";
           //Score UP Funktion erhöht den Punktestand um den Wert der in der Config Datei eingestellt ist
           scoreup($_COOKIE['UserID'], $ScoreMiddle);
-          //Button für nächste Frage herbeirufen
-          nextQuestion();
         }
         //Wenn die Frage nicht richtig beantwortet wurde
         else {
-          echo "Ihre Antwort ".$_POST['answer']." ist leider falsch, richtig wäre ".$_POST['rightanswer']." gewesen.";
+          echo "<h2>Antwort</h2>";
+          echo "<hr>";
+          echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
+          echo "  <table>\n";
+          echo "    <tr>\n";
+          echo "      <td colspan=\"4\" class=\"question\">Ihre Antwort <span class=\"red\">".$_POST['answer']." ist leider falsch</span>, <span class=\"green\">richtig wäre ".$_POST['rightanswer']."</span> gewesen.</td>\n";
+          echo "    </tr>\n";
+          echo "    <tr>\n";
+          echo "      <td><button type=\"submit\" class=\"answer\" name=\"nextQuestion\">Nächste Frage</button></td>\n";
+          echo "    </tr>\n";
+          echo "</table>";
+          echo "</form>";
           //Falsche Frage in Datenbank speichern
           wrongAnswer($_COOKIE['UserID']);
           //Button für nächste Frage herbeirufen
-          nextQuestion();
         }
       }
       //Wenn beides eingestellt ist, das Quiz start

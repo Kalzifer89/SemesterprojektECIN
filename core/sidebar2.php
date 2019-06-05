@@ -43,7 +43,9 @@ if (isset($_COOKIE['UserID'])) {
             $DatenbankRegistierungScore = "INSERT INTO score (userID, questionsRight, questionsWrong, score) VALUES ('$userID',0,0,0)";
             $UserArray = mysqli_query ($db_link, $DatenbankRegistierungScore);
           }
+
         }
+        statsbutton();
   }
-  statsbutton();
+
 ?>

@@ -16,7 +16,7 @@ html, body {
 header {
     background-color:black;
     color: white;
-    padding: 25px;
+    padding: 15px;
 }
 
 header button {
@@ -26,8 +26,18 @@ header button {
   color: inherit;
   background-color: transparent;
   cursor: pointer;
+  color: #999;
+  margin-left: 15px;
 }
 
+header button:hover {
+  color: #fff;
+}
+
+
+header form {
+  display: inline;
+}
 
 header a {
   color: #999;
@@ -40,6 +50,7 @@ header a:hover {
 
 #headermenu {
   display: inline;
+  text-align: center;
 }
 
 #loginarea {
@@ -84,6 +95,51 @@ article {
     flex: 5;
     background-color: white;
     padding: 50px;
+}
+
+article h2 {
+  color: #ff8800;
+  text-align: center;
+}
+
+article table {
+  width: 100%;
+  border: 1px solid #e6e6e6;
+}
+
+.question {
+  padding: 50px;
+  text-align: center;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: large;
+}
+
+.answer{
+  width: 100%;
+  padding: 15px;
+  background-color: #ff8800;
+  border-color: #e68a00;
+  font-weight: bold;
+}
+
+.inputAnswer {
+  width: 100%;
+  padding: 15px;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+hr {
+  width: 80%;
+  height: 1px;
+  margin-bottom: 15px;
+  background: #e6e6e6;
 }
 
 aside {

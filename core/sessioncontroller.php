@@ -55,43 +55,47 @@ if(isset($_POST['name']))
 
 //Bei Erfolgreichen Login Login Cookie Erstellen ansonsten Fehlermeldung
 //Überprüfung ob Name und Passwort ausgefüllt sind
-if(empty ($_POST['name']) && empty ($_POST['passwort']))
-  {
-    $Fehlermeldung ="Namen und Passwort fehlen";
-  }
-  //Überprüfung ob Name Ausgefüllt ist
-  elseif (empty ($_POST['name'])) {
-    $Fehlermeldung ="Namen fehlt";
-  }
-  //ÜBerprüfung ob Passwort ausgefüllt ist
-  elseif (empty ($_POST['passwort'])) {
-    $Fehlermeldung ="Passwort fehlt";
-  }
-  elseif (mysqli_num_rows ($UserArray) == 0) {
-    $Fehlermeldung ="Benutzername nicht in Datenbank";
-  }
-  elseif (mysqli_num_rows ($PasswortArray) == 0) {
-    $Fehlermeldung ="Passwort nicht in Datenbank";
-  }
-  elseif (empty($_POST['captcha'])) {
-    $Fehlermeldung ="Das Ergebniss muss eingeben werden";
-  }
-  elseif($_POST['captcha'] !=$_SESSION['ergebnis']) {
-    $Fehlermeldung ="Ergebniss ist Falsch";
+if(isset($_POST['Anmelden'])){
+  if(empty ($_POST['name']) && empty ($_POST['passwort']))
+    {
+      $Fehlermeldung ="Namen und Passwort fehlen";
     }
-  else {
-    $Fehlermeldung ="Sie sind erfolgreich eingelogt";
-    //Eingelogt setzen
-    setcookie("LoggedIn", "True", 0);
-    //username setzen
-    setcookie("UserName", "$Username",0);
-    //User ID an Coockie Übergeben
-    while ($zeile2 = mysqli_fetch_array($UserIDArray))
-             {
-               setcookie("UserID", $zeile2['userID'], 0);
-               setcookie("isAdmin", $zeile2['userAdmin'], 0);
-             }
-    echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
-  }
-
+    //Überprüfung ob Name Ausgefüllt ist
+    elseif (empty ($_POST['name'])) {
+      $Fehlermeldung ="Namen fehlt";
+    }
+    //ÜBerprüfung ob Passwort ausgefüllt ist
+    elseif (empty ($_POST['passwort'])) {
+      $Fehlermeldung ="Passwort fehlt";
+    }
+    elseif (mysqli_num_rows ($UserArray) == 0) {
+      $Fehlermeldung ="Benutzername nicht in Datenbank";
+    }
+    elseif (mysqli_num_rows ($PasswortArray) == 0) {
+      $Fehlermeldung ="Passwort nicht in Datenbank";
+    }
+    elseif (empty($_POST['captcha'])) {
+      $Fehlermeldung ="Das Ergebniss muss eingeben werden";
+    }
+    elseif($_POST['captcha'] !=$_SESSION['ergebnis']) {
+      $Fehlermeldung ="Ergebniss ist Falsch";
+      }
+    else {
+      $Fehlermeldung ="Sie sind erfolgreich eingelogt";
+      //Eingelogt setzen
+      setcookie("LoggedIn", "True", 0);
+      //username setzen
+      setcookie("UserName", "$Username",0);
+      //User ID an Coockie Übergeben
+      while ($zeile2 = mysqli_fetch_array($UserIDArray))
+               {
+                 setcookie("UserID", $zeile2['userID'], 0);
+                 setcookie("isAdmin", $zeile2['userAdmin'], 0);
+               }
+      echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
+    }
+}
+else {
+  $Fehlermeldung = "Bitte loggen sie sich ein.";
+}
 ?>

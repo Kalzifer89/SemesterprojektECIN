@@ -10,6 +10,7 @@
 
 
 //Login Überprüfen Elemente nur Anzeigen wenn Eingelogt
+if (isset($_COOKIE['LoggedIn'])) {
 if ($_COOKIE['LoggedIn'] == true && $_COOKIE['isAdmin'] == 1)
 {
 
@@ -549,7 +550,7 @@ elseif (isset($_POST['newquestion'])) {
 //ende Bereich Defailt //Anfang Bereiche Default /////////////////////////////////////////////////////////////////////////////////////////
 
   }
-
+}
 else {
   echo "Sie sind leider nicht eingelogt oder verfügen nicht über die Nötigen Rechte um diese Seite zu sehen.";
 }

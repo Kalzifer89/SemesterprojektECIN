@@ -36,6 +36,7 @@ function loginArea()
   //Ermöglicht es Fehlermeldung Global Anzusprechen
   global $Fehlermeldung;
   echo "<h2>Anmelden</h2>";
+  echo "<hr>";
   echo "          <table class=\"loginarea\">\n";
   echo "           <form action=\"index.php\" method=\"POST\">";
   echo "            <tr>\n";
@@ -142,17 +143,22 @@ function quizmittel ()
       // aktuelles Tupel ausgeben --------------------------------------------------
                   while ($zeile = mysqli_fetch_array($FragenArray))
                    {
+          echo "<h2>Quiz (Mittel)</h2>";
+          echo "<hr>";
           echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
           echo "  <table>\n";
           echo "    <tr>\n";
-          echo "      <td colspan=\"4\">".$zeile['questionContent']."</td>\n";
+          echo "      <td colspan=\"4\" class=\"question\">".$zeile['questionContent']."</td>\n";
           echo "    </tr>\n";
           echo "    <tr>\n";
-          echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer1']."\">".$zeile['questionAnswer1']."</button></td>\n";
-          echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer2']."\">".$zeile['questionAnswer2']."</button></td>\n";
-          echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer3']."\">".$zeile['questionAnswer3']."</button></td>\n";
-          echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer4']."\">".$zeile['questionAnswer4']."</button></td>\n";
-          echo "      <input type=\"hidden\" name=\"rightanswer\" value=\"".$zeile['questionAnswerRight']."\">";
+          echo "      <td><button type=\"submit\" name=\"answer\" class=\"answer\" value=\"".$zeile['questionAnswer1']."\">".$zeile['questionAnswer1']."</button></td>\n";
+          echo "      <td><button type=\"submit\" name=\"answer\" class=\"answer\" value=\"".$zeile['questionAnswer2']."\">".$zeile['questionAnswer2']."</button></td>\n";
+          echo "    </tr>\n";
+          echo "    <tr>\n";
+          echo "      <td><button type=\"submit\" name=\"answer\" class=\"answer\"  value=\"".$zeile['questionAnswer3']."\">".$zeile['questionAnswer3']."</button></td>\n";
+          echo "      <td><button type=\"submit\" name=\"answer\" class=\"answer\"  value=\"".$zeile['questionAnswer4']."\">".$zeile['questionAnswer4']."</button></td>\n";
+          echo "      <input type=\"hidden\" name=\"rightanswer\" class=\"answer\" value=\"".$zeile['questionAnswerRight']."\">";
+          echo "    </tr>\n";
                   }
              }
           echo "    </tr>\n";
@@ -170,37 +176,39 @@ function quizleicht ()
       // aktuelles Tupel ausgeben --------------------------------------------------
                   while ($zeile = mysqli_fetch_array($FragenArray))
                    {
+                      echo "<h2>Quiz (leicht)</h2>";
+                      echo "<hr>";
                       echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
                       echo "  <table>\n";
                       echo "    <tr>\n";
-                      echo "      <td colspan=\"4\">".$zeile['questionContent']."</td>\n";
+                      echo "      <td colspan=\"4\" class=\"question\">".$zeile['questionContent']."</td>\n";
                       echo "    </tr>\n";
                       echo "    <tr>\n";
                       //Zufällig bestimmen ob die Richtige Antwort als erstes oder als Letztes Kommt.
                       $zufall = rand(0, 1);
                       if ($zufall == 1)
                       {
-                        echo "       <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswerRight']."\">".$zeile['questionAnswerRight']."</button></td>\n";
+                        echo "       <td><button type=\"submit\" name=\"answer\" class=\"answer\" value=\"".$zeile['questionAnswerRight']."\">".$zeile['questionAnswerRight']."</button></td>\n";
                       }
                       //ÜBerprüfung damit die Richtige Antwort nicht zufällig 2 mal ausgegeben wird.
                       if ($zeile['questionAnswer1'] == $zeile['questionAnswerRight']) {
-                        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer2']."\">".$zeile['questionAnswer2']."</button></td>\n";
+                        echo "      <td><button type=\"submit\" name=\"answer\" class=\"answer\" value=\"".$zeile['questionAnswer2']."\">".$zeile['questionAnswer2']."</button></td>\n";
                       }
                       elseif ($zeile['questionAnswer2'] == $zeile['questionAnswerRight']) {
-                        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer3']."\">".$zeile['questionAnswer3']."</button></td>\n";
+                        echo "      <td><button type=\"submit\" name=\"answer\" class=\"answer\" value=\"".$zeile['questionAnswer3']."\">".$zeile['questionAnswer3']."</button></td>\n";
                       }
                       elseif ($zeile['questionAnswer3'] == $zeile['questionAnswerRight']) {
-                        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer4']."\">".$zeile['questionAnswer4']."</button></td>\n";
+                        echo "      <td><button type=\"submit\" name=\"answer\" class=\"answer\" value=\"".$zeile['questionAnswer4']."\">".$zeile['questionAnswer4']."</button></td>\n";
                       }
                       elseif ($zeile['questionAnswer4'] == $zeile['questionAnswerRight']) {
-                        echo "      <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswer1']."\">".$zeile['questionAnswer1']."</button></td>\n";
+                        echo "      <td><button type=\"submit\" name=\"answer\" class=\"answer\" value=\"".$zeile['questionAnswer1']."\">".$zeile['questionAnswer1']."</button></td>\n";
                       }
                       //Zufällig bestimmen ob die Richtige Antwort als erstes oder als Letztes Kommt.
                       if ($zufall == 0)
                       {
-                        echo "     <td><button type=\"submit\" name=\"answer\" value=\"".$zeile['questionAnswerRight']."\">".$zeile['questionAnswerRight']."</button></td>\n";
+                        echo "     <td><button type=\"submit\" name=\"answer\" class=\"answer\" value=\"".$zeile['questionAnswerRight']."\">".$zeile['questionAnswerRight']."</button></td>\n";
                       }
-                      echo "      <input type=\"hidden\" name=\"rightanswer\" value=\"".$zeile['questionAnswerRight']."\">";
+                      echo "      <input type=\"hidden\" name=\"rightanswer\" class=\"answer\" value=\"".$zeile['questionAnswerRight']."\">";
 
                   }
                 echo "    </tr>\n";
@@ -219,15 +227,17 @@ function quizschwer ()
       // aktuelles Tupel ausgeben --------------------------------------------------
                   while ($zeile = mysqli_fetch_array($FragenArray))
                    {
+          echo "<h2>Quiz (schwer)</h2>";
+          echo "<hr>";
           echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
           echo "  <table>\n";
           echo "    <tr>\n";
-          echo "      <td colspan=\"4\">".$zeile['questionContent']."</td>\n";
+          echo "      <td colspan=\"4\" class=\"question\" >".$zeile['questionContent']."</td>\n";
           echo "    </tr>\n";
           echo "    <tr>\n";
-          echo "      <td><input type=\"text\" name=\"answer\"></td>\n";
+          echo "      <td><input type=\"text\" name=\"answer\"  class=\"inputAnswer\"></td>\n";
           echo "      <input type=\"hidden\" name=\"rightanswer\" value=\"".$zeile['questionAnswerRight']."\">";
-          echo "      <td><button type=\"submit\">Absenden</button></td>\n";
+          echo "      <td><button type=\"submit\" class=\"answer\">Absenden</button></td>\n";
                   }
              }
           echo "    </tr>\n";
@@ -238,7 +248,7 @@ function quizschwer ()
 //Funktion für den Nächste Frage Button
 function nextQuestion() {
   echo "<form class=\"nextQuestion\" action=\"index.php\" method=\"post\">\n";
-  echo "  <button type=\"submit\" name=\"nextQuestion\">Nächste Frage</button>\n";
+  echo " <button type=\"submit\" name=\"nextQuestion\">Nächste Frage</button>\n";
   echo "</form>";
 
 }
