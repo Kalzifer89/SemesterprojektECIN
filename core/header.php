@@ -14,6 +14,7 @@ echo "      <div id=\"headermenu\">\n";
 echo "        <form action=\"index.php\" method=\"POST\">";
 echo "        <button name=\"nextQuestion\" value=\"nextQuestiont\" type=\"submit\">Quiz</button>";
 echo "        <button name=\"stats\" value=\"stats\" type=\"submit\">Statistik</button>";
+echo "        <button name=\"help\" value=\"help\" type=\"submit\">Hilfe</button>";
 echo "        <button name=\"admin\" value=\"admin\" type=\"submit\">Admin</button>";
 echo "        </form>";
 echo "      </div>\n";

@@ -6,6 +6,11 @@ html, body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h3 {
+  color: #7cab1c;
+  text-align: center;
+}
+
 #wrapper {
     display: flex;
     flex-direction: column;
@@ -85,6 +90,32 @@ nav ul {
   background-color: green;
 }
 
+nav button {
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  background-color: #7cab1c;
+}
+
+.all {
+  background-color: #006600;
+  color: white;
+}
+
+.difficultyeasy {
+  background-color:#33cc33;
+}
+
+.difficultymiddle {
+  background-color:#ffff00;
+}
+
+.difficultyhard {
+  background-color: #cc3300;
+}
+
+
+
 nav li {
   height: 50px;
   padding: 15 15 15 15;
@@ -135,6 +166,11 @@ article table {
   color: green;
 }
 
+.faqanswer {
+  padding: 50px;
+  border: 1px solid grey;
+}
+
 hr {
   width: 80%;
   height: 1px;
@@ -145,6 +181,14 @@ hr {
 aside {
 	flex: 1;
 	background-color: white;
+  padding: 15px;
+}
+
+aside button {
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  background-color: #7cab1c;
 }
 
 footer {

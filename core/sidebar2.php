@@ -8,16 +8,16 @@
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
 
-echo "Variablen Check <br>";
-echo "<b>Session</b><br>";
-echo print_r($_SESSION);
-echo "<br>";
-echo "<b>Post</b><br>";
-echo print_r($_POST);
-echo "<br>";
-echo "<b>Coockies</b><br>";
-echo print_r($_COOKIE);
-echo "<hr>";
+// echo "Variablen Check <br>";
+// echo "<b>Session</b><br>";
+// echo print_r($_SESSION);
+// echo "<br>";
+// echo "<b>Post</b><br>";
+// echo print_r($_POST);
+// echo "<br>";
+// echo "<b>Coockies</b><br>";
+// echo print_r($_COOKIE);
+// echo "<hr>";
 //Score anzeigen
 //User ID an Variable Übergeben wenn gesetzt
 if (isset($_COOKIE['UserID'])) {
@@ -32,9 +32,11 @@ if (isset($_COOKIE['UserID'])) {
 // aktuelles Tupel ausgeben --------------------------------------------------
             while ($zeile = mysqli_fetch_array($ScoreArray))
              {
-               echo "Punktestand: ".$zeile['score']." Punkte<br>";
-               echo "Anzahl richtig beantworter Fragen: ".$zeile['questionsRight']."<br>";
-               echo "Anzahl falsch beantworter Fragen: ".$zeile['questionsWrong']."<br>";
+               echo "<h3>Statistik</h3>\n";
+               echo "<hr>";
+               echo "Punktestand: <b>".$zeile['score']." Punkte</b><br>";
+               echo "<span class=\"green\">Richtige Fragen: ".$zeile['questionsRight']."</span><br>";
+               echo "<span class=\"red\">Falsche Fragen: ".$zeile['questionsWrong']."</span><br>";
              }
         }
         else {
@@ -45,7 +47,12 @@ if (isset($_COOKIE['UserID'])) {
           }
 
         }
+        echo "<br>";
         statsbutton();
+        echo"<hr>";
+        echo "<h3>Hilfe<h2>";
+        helpbutton();
+        echo"<hr>";
   }
 
 ?>

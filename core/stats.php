@@ -9,7 +9,7 @@
 ///////////////////////////////////////////////
 
 echo "<h2>Statistiken</h2>";
-
+echo"<hr>";
 //Abfrage des Scores aus der Datenbank
 $userID = $_COOKIE['UserID'];
 $DatenbankAbfrageScore = "SELECT * FROM score WHERE userID LIKE '$userID'";

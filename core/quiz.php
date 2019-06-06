@@ -17,7 +17,13 @@ if (isset($_POST['Schwerikeitsgrad']) ) {
 //Wenn keine Kategorie gewählt ist, um Auswahl der Katgeorie bitten
 if(!isset($_COOKIE['category']))
       {
-          echo "Bitte wählen sie eine Kategorie in der Linken Sidebar aus um mit dem Spielen zu beginnen";
+        echo "<h2>Schwerigkeitsgrad</h2>";
+        echo "<hr>";
+        echo "<table>\n";
+        echo "  <tr>\n";
+        echo "    <td colspan=\"2\" class=\"question\">Bitte wählen sie eine Kategorie in der Linken Sidebar aus um mit dem Spielen zu beginnen</td>";
+        echo "  </tr>\n";
+        echo "</table>\n";
       }
       //Wenn kein Schwerikeitsgrad geäwhlt ist um Auswahl bitten:
       elseif (!isset($_COOKIE['Schwerikeitsgrad']) ) {

@@ -19,9 +19,10 @@ if(isset($_POST['category']))
 $DatenbankAbfrageKategorien= "SELECT categoryName, categoryID FROM categorys";
 $KategorieArray = mysqli_query ($db_link, $DatenbankAbfrageKategorien);
 
-echo "            -Kategorien-<br>\n";
+echo "<h3>Kategorien</h3>\n";
+echo "<hr>";
 echo "<form class=\"category\" action=\"index.php\" method=\"post\">\n";
-echo "<button type=\"submnit\" name=\"category\" value=\"alle\">alle</button> <br>  \n";
+echo "<button type=\"submnit\" name=\"category\" value=\"alle\"class=\"all\">alle</button> <br>  \n";
 // Wenn mehr als 0 Tupel vorhanden sind -------------------------------
     if (mysqli_num_rows ($KategorieArray) > 0)
         {
@@ -33,7 +34,7 @@ echo "<button type=\"submnit\" name=\"category\" value=\"alle\">alle</button> <b
         }
 echo "</form>";
 echo "<hr>";
-schwerikeitsgrad();
+schwerikeitsgradkurz();
 
 
 

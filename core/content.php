@@ -23,10 +23,10 @@ if (isset($_COOKIE['LoggedIn'])) {
           echo "<meta http-equiv=\"refresh\" content=\"1; URL=admin.php\">";
     }
 
-    //Bei Drucken auf den Registerungsbutton den Registrierungsdialog anzeigen
-    elseif (isset($_POST['register'])) {
-        captcha ();
-        registerArea();
+    //Den Hilfe Bereich Anzeigen wenn eingelogt und der Hilfe Button gedrückt wird
+    elseif (isset($_POST['help'])) {
+        include './core/help.php';
+
     }
 
     //Anzeigen des Quizes wenn der User eingelogt ist.
@@ -38,6 +38,12 @@ if (isset($_COOKIE['LoggedIn'])) {
 
   }
 }
+    //Bei Drucken auf den Registerungsbutton den Registrierungsdialog anzeigen
+    elseif (isset($_POST['register'])) {
+        captcha ();
+        registerArea();
+    }
+
     //Ansonsten den Login Bereich und den Registrerungsbutton anzeigen
     else {
       captcha ();

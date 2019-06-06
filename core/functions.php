@@ -79,6 +79,8 @@ function registerArea()
 {
   include './core/register.php';
   echo "\n";
+  echo "<h2>Registrierung</h2>";
+  echo "<hr>";
   echo "<table>\n";
   echo "<form method=\"post\" class=\"register\" action=\"index.php\">\n";
   echo "   <tr>\n";
@@ -105,7 +107,7 @@ function registerArea()
   echo "    <td><input type=\"text\" name=\"captcha\" value=\"Eingabe Ergebniss\"></td>\n";
   echo "  </tr>\n";
   echo "  <tr>\n";
-  echo "    <td><input type=\"submit\" name=\"register\"  value=\"Absenden\">\n</td>";
+  echo "    <td><input type=\"submit\" name=\"register\" class=\"button\"  value=\"Absenden\">\n</td>";
   echo "  </tr>\n";
   echo "</form>\n";
   echo "</table>\n";
@@ -114,24 +116,47 @@ function registerArea()
 //Funktion um den Schwerikeitsgrad auszuwählen
 function schwerikeitsgrad()
 {
-  echo "Bitte wählen sie einen Schwerikeitsgrad aus: <br>";
+  echo "<h2>Schwerigkeitsgrad</h2>";
+  echo "<hr>";
   echo "<form class=\"Schwerikeitsgrad\" action=\"index.php\" method=\"post\">\n";
   echo "<table>\n";
   echo "  <tr>\n";
-  echo "  <td><button type=\"submit\" name=\"Schwerikeitsgrad\" value=\"leicht\">leicht</button></td>  \n";
+  echo "    <td colspan=\"2\" class=\"question\">Bitte wählen sie einen Schwerikeitsgrad aus:</td>";
+  echo "  </tr>\n";
+  echo "  <tr>\n";
+  echo "  <td><button type=\"submit\" name=\"Schwerikeitsgrad\" class=\"answer\" value=\"leicht\">leicht</button></td>  \n";
   echo "  <td>2 Mögliche Antworten, eine davon richtig. 50% Gewinnchance</td>\n";
   echo "  </tr>\n";
   echo "  <tr>\n";
-  echo "  <td><button type=\"submit\" name=\"Schwerikeitsgrad\" value=\"mittel\">mittel</button></td>  \n";
+  echo "  <td><button type=\"submit\" name=\"Schwerikeitsgrad\" class=\"answer\" value=\"mittel\">mittel</button></td>  \n";
   echo "  <td>4 Mögliche Antworten, eine davon richtig. 25% Gewinnchance</td>\n";
   echo "  </tr>\n";
   echo "  <tr>\n";
-  echo "    <td><button type=\"submit\" name=\"Schwerikeitsgrad\" value=\"hoch\">hoch</button></td>\n";
+  echo "    <td><button type=\"submit\" name=\"Schwerikeitsgrad\" class=\"answer\" value=\"hoch\">hoch</button></td>\n";
   echo "    <td>Keine vorgegebene Antwort, Freie Texteingabe.</td>\n";
   echo "  </tr>\n";
   echo "</table>  \n";
   echo "</form>";
 }
+
+//Funktion um den Schwerikeitsgrad in kurz auszuwählen
+function schwerikeitsgradkurz()
+{
+  echo "<h3>Schwerigkeitsgrad</h3>\n";
+  echo "<hr>";
+  echo "<form class=\"Schwerikeitsgrad\" action=\"index.php\" method=\"post\">\n";
+  echo "<button type=\"submit\" name=\"Schwerikeitsgrad\" class=\"difficultyeasy\" value=\"leicht\">leicht</button>  \n";
+  echo "<button type=\"submit\" name=\"Schwerikeitsgrad\" class=\"difficultymiddle\" value=\"mittel\">mittel</button> \n";
+  echo "<button type=\"submit\" name=\"Schwerikeitsgrad\" class=\"difficultyhard\" value=\"hoch\">hoch</button>\n";
+  echo "</form>";
+  echo "<hr>";
+}
+
+function kategoryselection() {
+
+}
+
+
 
 //Funktion für das Quit auf Mittelerem Schwerikeitsgrad
 function quizmittel ()
@@ -306,6 +331,12 @@ function zurückbutton(){
 function statsbutton(){
   echo "<form class=\"statsbutton\" action=\"index.php\" method=\"post\">\n";
   echo "  <button type=\"submit\" name=\"stats\">Statistik Anzeigen</button>\n";
+  echo "</form>";
+}
+
+function helpbutton(){
+  echo "<form class=\"helpbutton\" action=\"index.php\" method=\"post\">\n";
+  echo "  <button type=\"submit\" name=\"help\">Hilfe</button>\n";
   echo "</form>";
 }
 
