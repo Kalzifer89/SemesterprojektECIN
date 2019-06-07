@@ -47,7 +47,8 @@ elseif (isset($_POST['newquestion'])) {
   $DatenbankAbfrageKategorien= "SELECT categoryName, categoryID FROM categorys";
   $KategorieArray = mysqli_query ($db_link, $DatenbankAbfrageKategorien);
 
-  echo "<h1>Frage erstellen</h1>\n";
+  echo "<h2>Frage erstellen</h2>\n";
+  echo "<hr";
   echo "<form class=\"createquestion\" action=\"admin.php\" method=\"post\">\n";
   echo "  <table>\n";
   echo "    <tr>\n";
@@ -156,7 +157,8 @@ elseif (isset($_POST['newquestion'])) {
     $DatenbankAbfrageKategorien= "SELECT categoryName, categoryID FROM categorys";
     $KategorieArray = mysqli_query ($db_link, $DatenbankAbfrageKategorien);
 
-    echo "<h1>Frage bearbeiten</h1>\n";
+    echo "<h2>Frage bearbeiten</h2>\n";
+    echo "<hr>";
     echo "<form class=\"createquestion\" action=\"admin.php\" method=\"post\">\n";
     echo "  <table>\n";
     echo "    <tr>\n";
@@ -236,7 +238,8 @@ elseif (isset($_POST['newquestion'])) {
     $DatenbankAbfrageKategorien= "SELECT categoryName, categoryID FROM categorys";
     $KategorieArray = mysqli_query ($db_link, $DatenbankAbfrageKategorien);
 
-    echo "<h1>Frage löschen</h1>\n";
+    echo "<h2>Frage löschen</h2>\n";
+    echo "<hr>";
     echo "<form class=\"createquestion\" action=\"admin.php\" method=\"post\">\n";
     echo "  <table>\n";
     echo "    <tr>\n";
@@ -485,6 +488,7 @@ elseif (isset($_POST['newquestion'])) {
   //Wenn neue Kategorie erstelle werden soll
   elseif (isset($_POST['newcategory'])) {
     echo "<h2>Neue Kategorie erstellen</h2>";
+    echo "<hr>";
     echo "<form class=\"newcategory\" action=\"admin.php\" method=\"post\">\n";
     echo "  <input type=\"text\" name=\"newcategory\" value=\"Kategoryname\">\n";
     echo "  <button type=\"submit\" name=\"createcategory\">Absenden</button>\n";
@@ -501,21 +505,25 @@ elseif (isset($_POST['newquestion'])) {
     //Datenbankabfrage nach Fragen
     $DatenbankAbfrageFragen= "SELECT * FROM questions, categorys WHERE questionCategory = categoryID";
     $FragenArray = mysqli_query ($db_link, $DatenbankAbfrageFragen);
-      echo "<h1>User Bearbeiten</h1>\n";
+      echo "<h2>User Bearbeiten</h2>\n";
+      echo "<hr>";
       echo "<form class=\"manageuser\" action=\"admin.php\" method=\"post\">\n";
-      echo "<button type=\"submit\" name=\"manageuser\">User bearbeiten</button>  \n";
+      echo "<button type=\"submit\" name=\"manageuser\" class=\"answer\">User bearbeiten</button>  \n";
       echo "</form>\n";
       echo "<hr>\n";
-      echo "<h1>Kategorie erstellen</h1>\n";
+      echo "<h2>Kategorie erstellen</h2>\n";
+      echo "<hr>\n";
       echo "<form class=\"newcategory\" action=\"admin.php\" method=\"post\">\n";
-      echo "<button type=\"submit\" name=\"newcategory\">Neue Kategorie ersellen</button>  \n";
+      echo "<button type=\"submit\" name=\"newcategory\" class=\"answer\">Neue Kategorie ersellen</button>  \n";
       echo "</form>\n";
       echo "<hr>\n";
-      echo "<h1>Fragen</h1>\n";
+      echo "<h2>Fragen</h2>\n";
+      echo "<hr>";
       echo "<form class=\"newquestion\" action=\"admin.php\" method=\"post\">\n";
-      echo "<button type=\"submit\" name=\"newquestion\">Neue Frage ersellen</button>  \n";
+      echo "<button type=\"submit\" name=\"newquestion\" class=\"answer\">Neue Frage ersellen</button>  \n";
       echo "</form>\n";
-      echo "<table>\n";
+      echo "<hr>";
+      echo "<table class=\"questiontable\">\n";
       echo "<tr>";
       echo "  <th>Nr</th>\n";
       echo "  <th>Kategory</th>\n";
