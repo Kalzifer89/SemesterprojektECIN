@@ -10,7 +10,6 @@
 
 
 //Login Überprüfen Elemente nur Anzeigen wenn Eingelogt
-if (isset($_COOKIE['LoggedIn'])) {
 if ($_COOKIE['LoggedIn'] == true && $_COOKIE['isAdmin'] == 1)
 {
 
@@ -22,6 +21,8 @@ if ($_COOKIE['LoggedIn'] == true && $_COOKIE['isAdmin'] == 1)
     //Überprüen ob alle Felder ausgefüllt worden sind, sonsten fehlermeldungen
     if(empty ($_POST['questionCategory']) or empty ($_POST['questionContent']) or empty ($_POST['questionAnswer1']) or empty ($_POST['questionAnswer2']) or empty ($_POST['questionAnswer3']) or empty ($_POST['questionAnswer4']) or empty ($_POST['questionAnswerRight']))
       {
+        echo "<h2>Frage erstellen</h2>\n";
+        echo "<hr>";
         echo "<h3 class =\"erorr\">Sie haben nicht alle Notwenigen Felder ausgefüllt, es wurde kein Eintrag gespeichert<h3>";
       }
       else {
@@ -36,6 +37,8 @@ if ($_COOKIE['LoggedIn'] == true && $_COOKIE['isAdmin'] == 1)
         //Einträge in Datenbank schreiben
         $DatenbankEintragFrage = "INSERT INTO questions (questionCategory, questionContent, questionAnswer1, questionAnswer2, questionAnswer3, questionAnswer4, questionAnswerRight) VALUES ('$questionCategory','$questionContent', '$questionAnswer1','$questionAnswer2','$questionAnswer3','$questionAnswer4','$questionAnswerRight')";
         $Eintragen = mysqli_query ($db_link, $DatenbankEintragFrage);
+        echo "<h2>Frage Erstellen</h2>\n";
+        echo "<hr>";
         echo "<h3 class=\"sucess\">Eintrag erfolgreich</h3>";
         weiterbuttonadmin();
       }
@@ -130,6 +133,8 @@ elseif (isset($_POST['newquestion'])) {
         //Einträge in Datenbank schreiben
         $DatenbankFrageAendern = "UPDATE questions SET questionCategory = '$questionCategory', questionContent = '$questionContent', questionAnswer1 = '$questionAnswer1 ', questionAnswer2 = '$questionAnswer2' , questionAnswer3= '$questionAnswer3' , questionAnswer4 = '$questionAnswer4'  WHERE questionID = '$questionID';";
         $Eintragen = mysqli_query ($db_link, $DatenbankFrageAendern);
+        echo "<h2>Frage bearbeiten</h2>\n";
+        echo "<hr>";
         echo "<h3 class=\"sucess\">Eintrag erfolgreich geändert</h3>";
         weiterbuttonadmin();
       }
@@ -140,6 +145,9 @@ elseif (isset($_POST['newquestion'])) {
     $questionID = $_POST['questionID'];
     $DatenbankEintragCategory = "DELETE FROM questions WHERE questionID = '$questionID' ";
     $Eintragen = mysqli_query ($db_link, $DatenbankEintragCategory);
+
+    echo "<h2>Frage löschen</h2>\n";
+    echo "<hr>";
     echo "<h3 class=\"sucess\">Eintrag erfolgreich gelöscht</h3>";
     weiterbuttonadmin();
   }
@@ -215,9 +223,8 @@ elseif (isset($_POST['newquestion'])) {
           echo "      <td><input type=\"text\" name=\"questionAnswerRight\"value=\"".$zeile['questionAnswerRight']."\"></td>\n";
           echo "    </tr>\n";
           echo "    <tr>\n";
-          echo "      <td></td>\n";
-          echo "      <td>:</td>\n";
-          echo "      <td><button type=\"submit\" name=\"questionchange\">Frage ändern</button></td>\n";
+          echo "      <td><button type=\"submit\" class=\"backbutton\">zurück</button></td>\n";
+          echo "      <td colspan=\"2\"><button type=\"submit\" name=\"questionchange\"class=\"backbutton\" >Frage ändern</button></td>\n";
           echo "    </tr>\n";
           echo "  </table>\n";
           echo "<input type=\"hidden\" name=\"questionID\" value=\"".$zeile['questionID']."\">";
@@ -287,8 +294,8 @@ elseif (isset($_POST['newquestion'])) {
           echo "    <tr>\n";
           echo "      <td></td>\n";
           echo "      <td>:</td>\n";
-          echo "      <td><button type=\"submit\" name=\"questionDelete\">Frage Löschen</button></td>\n";
-          echo "      <td><button type=\"submit\" name=\"questionAbbort\">Zurück</button></td>\n";
+          echo "      <td><button type=\"submit\" name=\"questionDelete\" class=\"backbutton\">Frage Löschen</button></td>\n";
+          echo "      <td><button type=\"submit\" name=\"questionAbbort\" class=\"backbutton\">Zurück</button></td>\n";
           echo "    </tr>\n";
           echo "  </table>\n";
           echo "<input type=\"hidden\" name=\"questionID\" value=\"".$zeile['questionID']."\">";
@@ -376,7 +383,8 @@ elseif (isset($_POST['newquestion'])) {
       echo "  </table>\n";
       echo "<input type=\"hidden\" name=\"userID\" value=\"".$zeile['userID']."\">";
       echo "    <tr>\n";
-      echo "      <td><button type=\"submit\" name=\"userchange\">User bearbeiten</button></td>\n";
+      echo "      <td><button type=\"submit\" name=\"userchange\" class=\"backbutton\">User bearbeiten</button></td>\n";
+      echo "      <td><button type=\"submit\" class=\"backbutton\">Zurück</button></td>\n";
       echo "    </tr>\n";
       echo "</form>";
     }
@@ -392,7 +400,8 @@ elseif (isset($_POST['newquestion'])) {
     $UserArray = mysqli_query ($db_link, $DatenbankAbfrageUser);
     while ($zeile = mysqli_fetch_array($UserArray))
        {
-      echo "<h1>User bearbeiten</h1>\n";
+      echo "<h2>User Löschen</h2>\n";
+      echo "<hr>";
       echo "<form class=\"edituser\" action=\"admin.php\" method=\"post\">\n";
       echo "  <table>\n";
       echo "    <tr>\n";
@@ -421,7 +430,7 @@ elseif (isset($_POST['newquestion'])) {
       echo "  </table>\n";
       echo "<input type=\"hidden\" name=\"userID\" value=\"".$zeile['userID']."\">";
       echo "    <tr>\n";
-      echo "      <td><button type=\"submit\" name=\"userdelite\">User löschen</button></td>\n";
+      echo "      <td><button type=\"submit\" name=\"userdelite\" class=\"backbutton\">User löschen</button></td>\n";
       echo "    </tr>\n";
       echo "</form>";
     }
@@ -463,6 +472,8 @@ elseif (isset($_POST['newquestion'])) {
         //Einträge in Datenbank schreiben
         $DatenbankUserAendern = "UPDATE users SET userName = '$userName', userMail = '$userMail', userAdmin = '$admin' WHERE userID = '$userID';";
         $Eintragen = mysqli_query ($db_link, $DatenbankUserAendern);
+        echo "<h2>User bearbeiten</h2>\n";
+        echo "<hr>";
         echo "<h3 class=\"sucess\">Eintrag erfolgreich geändert</h3>";
         weiterbuttonadmin();
       }
@@ -482,6 +493,8 @@ elseif (isset($_POST['newquestion'])) {
         $category = $_POST['newcategory'];
         $DatenbankEintragCategory = "INSERT INTO categorys (categoryName) VALUES ('$category')";
         $Eintragen = mysqli_query ($db_link, $DatenbankEintragCategory);
+        echo "<h2>Kategorie erstellen</h2>\n";
+        echo "<hr>";
         echo "<h3 class=\"sucess\">Kategorie erfolgreich erstellt</h3>";
         weiterbuttonadmin();
       }
@@ -505,7 +518,7 @@ elseif (isset($_POST['newquestion'])) {
   else {
     //Auflistung der Fragen
     //Datenbankabfrage nach Fragen
-    $DatenbankAbfrageFragen= "SELECT * FROM questions, categorys WHERE questionCategory = categoryID";
+    $DatenbankAbfrageFragen= "SELECT * FROM questions, categorys WHERE questionCategory = categoryID ORDER BY questionID";
     $FragenArray = mysqli_query ($db_link, $DatenbankAbfrageFragen);
       echo "<h2>User Bearbeiten</h2>\n";
       echo "<hr>";
@@ -557,11 +570,13 @@ elseif (isset($_POST['newquestion'])) {
       echo "</table>";
     }
 
+
 //ende Bereich Defailt /////////////////////////////////////////////////////////////////////////////////////////
 
-  }
 }
 else {
+  echo "<h2>Admin Bereich</h2>\n";
+  echo "<hr>";
   echo "Sie sind leider nicht eingelogt oder verfügen nicht über die Nötigen Rechte um diese Seite zu sehen.";
 }
 

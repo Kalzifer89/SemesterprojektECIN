@@ -9,9 +9,8 @@
 ///////////////////////////////////////////////
 
 if (isset($_COOKIE['LoggedIn'])) {
-  if ($_COOKIE['LoggedIn'] == true && $_COOKIE['isAdmin'] == 1)
+  if ($_COOKIE['LoggedIn'] == true)
   {
-
     //Den Statistik Bereich Anzeigen wenn eingelogt und der Statisk Button gedrückt wird
     if (isset($_POST['stats'])) {
         include './core/stats.php';

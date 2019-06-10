@@ -31,15 +31,15 @@ echo "    <header>\n";
 echo "    </header>\n";
 echo "    <div id=\"mehrspaltig\">\n";
 echo "        <nav>\n";
-              //Einbinden der Sitebar
-              include './core/sidebar.php';
+//               //Einbinden der Sitebar
+//               // include './core/sidebar.php';
 echo "        </nav>\n";
 echo "        <article>";
               //Einbinden des Content Bereiches
               include './core/edit.php';
 echo "        </article>\n";
 echo "        <aside>";
-              include './core/sidebar2.php';
+//               // include './core/sidebar2.php';
 echo "        </aside>\n";
 echo "    </div>\n";
 echo "    <footer>\n";

@@ -8,6 +8,10 @@
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
 
+if (isset($_POST['PDF'])) {
+  echo "<meta http-equiv=\"refresh\" content=\"1; URL='./core/pdfexport.php';\">";
+}
+
 echo "<h2>Statistiken</h2>";
 echo"<hr>";
 //Abfrage des Scores aus der Datenbank
@@ -28,7 +32,7 @@ $ScoreArray = mysqli_query ($db_link, $DatenbankAbfrageScore);
            }
 
 //Grundsätzliche Bild Eigenschaften
-$bild = imagecreate(600, 400);
+$bild = imagecreate(600, 300);
 $hg = imagecolorallocate($bild,255,255,255);
 $vg = imagecolorallocate ($bild,0,0,0);
 $rot = imagecolorallocate ($bild,255,0,0);
@@ -105,5 +109,14 @@ if (mysqli_num_rows ($ScoreArray) > 0)
 }
 echo "</table>";
 echo "<br>";
-zurückbutton();
+echo "<table>\n";
+echo "  <form class=\"\" action=\"index.php\" method=\"post\">\n";
+echo "  <tr>\n";
+echo "    <td><button type=\"submit\" name=\"back\" class=\"backbutton\">Zurück</button></td>\n";
+echo "    <td><button type=\"submit\" name=\"PDF\" class=\"backbutton\">PDF erstellen</button></td>\n";
+echo "  </tr>\n";
+echo "<input type=\"hidden\" name=\"stats\" value=\"stats\">";
+echo "  </form>\n";
+echo "</table>";
+
 ?>

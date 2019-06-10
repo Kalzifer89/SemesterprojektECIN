@@ -17,6 +17,7 @@ if( isset($_POST['ausloggen']))
           setcookie("isAdmin", "",time() -3600);
           setcookie("Schwerikeitsgrad", "",time() -3600);
           setcookie("category", "",time() -3600);
+          setcookie("UserMail", "",time() -3600);
           //Am Ende hier alle Coockies die erstellt wurden einmal killen
           session_destroy();
           echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
@@ -34,7 +35,7 @@ if (isset($_POST['name'])) {
   $DatenbankAbfragePasswort = "SELECT UserPassword FROM users WHERE UserPassword LIKE '$Passwort';";
   $PasswortArray = mysqli_query ($db_link, $DatenbankAbfragePasswort);
   //Abfrage nach User ID //
-  $DatenbankAbfrageUserID = "SELECT userID,userAdmin FROM users WHERE userName LIKE '$Username'";
+  $DatenbankAbfrageUserID = "SELECT userID,userAdmin,userMail FROM users WHERE userName LIKE '$Username'";
   $UserIDArray = mysqli_query ($db_link, $DatenbankAbfrageUserID);
 }
 
@@ -92,6 +93,7 @@ if(isset($_POST['Anmelden'])){
                {
                  setcookie("UserID", $zeile2['userID'], 0);
                  setcookie("isAdmin", $zeile2['userAdmin'], 0);
+                 setcookie("UserMail", $zeile2['userMail'], 0);
                }
       echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
     }

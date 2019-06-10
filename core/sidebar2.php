@@ -8,6 +8,7 @@
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
 
+//Controll Anzeigen für Debuggen
 // echo "Variablen Check <br>";
 // echo "<b>Session</b><br>";
 // echo print_r($_SESSION);

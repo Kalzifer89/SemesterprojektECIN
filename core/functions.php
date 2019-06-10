@@ -152,11 +152,6 @@ function schwerikeitsgradkurz()
   echo "<hr>";
 }
 
-function kategoryselection() {
-
-}
-
-
 
 //Funktion für das Quit auf Mittelerem Schwerikeitsgrad
 function quizmittel ()
@@ -189,16 +184,24 @@ function quizmittel ()
           echo "      <input type=\"hidden\" name=\"rightanswer\" class=\"answer\" value=\"".$zeile['questionAnswerRight']."\">";
           echo "    </tr>\n";
                   }
+                  echo "    </tr>\n";
+                  echo "  </table>\n";
+                  echo "</form>";
              }
-          echo "    </tr>\n";
-          echo "  </table>\n";
-          echo "</form>";
+             else {
+               echo "<h2>Quiz (mittel)</h2>";
+               echo "<hr>";
+               echo "Leider sind in dieser Kategorie noch keine Fragen eingestellt, bitten sie einen Admin um unterstützung";
+             }
+
+
 }
 
 //funktion für das Quiz auf Leicht
 function quizleicht ()
 {
   global $FragenArray;
+  global $AktuellKategorieName;
           if (mysqli_num_rows ($FragenArray) > 0)
               {
 
@@ -207,6 +210,9 @@ function quizleicht ()
                    {
                       echo "<h2>Quiz (leicht)</h2>";
                       echo "<hr>";
+                      echo "<div id=\"kategoriename\">";
+                      echo "(".$AktuellKategorieName.")";
+                      echo "</div>";
                       echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
                       echo "  <table>\n";
                       echo "    <tr>\n";
@@ -244,6 +250,11 @@ function quizleicht ()
                 echo "  </table>\n";
                 echo "</form>";
              }
+             else {
+               echo "<h2>Quiz (leicht)</h2>";
+               echo "<hr>";
+               echo "Leider sind in dieser Kategorie noch keine Fragen eingestellt, bitten sie einen Admin um unterstützung";
+             }
 }
 
 //Funktion für das Quiz auf Schwer
@@ -251,6 +262,7 @@ function quizschwer ()
 {
   global $Category;
   global $FragenArray;
+  global $AktuellKategorieName;
           if (mysqli_num_rows ($FragenArray) > 0)
               {
 
@@ -259,6 +271,9 @@ function quizschwer ()
                    {
           echo "<h2>Quiz (schwer)</h2>";
           echo "<hr>";
+          echo "<div id=\"kategoriename\">";
+          echo "(".$AktuellKategorieName.")";
+          echo "</div>";
           echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
           echo "  <table>\n";
           echo "    <tr>\n";
@@ -269,10 +284,18 @@ function quizschwer ()
           echo "      <input type=\"hidden\" name=\"rightanswer\" value=\"".$zeile['questionAnswerRight']."\">";
           echo "      <td><button type=\"submit\" class=\"answer\">Absenden</button></td>\n";
                   }
-             }
           echo "    </tr>\n";
           echo "  </table>\n";
           echo "</form>";
+             }
+             else {
+               echo "<h2>Quiz (schwer)</h2>";
+               echo "<hr>";
+               echo "Leider sind in dieser Kategorie noch keine Fragen eingestellt, bitten sie einen Admin um unterstützung";
+             }
+
+
+
 }
 
 //Funktion für den Nächste Frage Button
@@ -316,20 +339,20 @@ function wrongAnswer($user) {
 }
 
 function weiterbuttonadmin(){
-  echo "<form class=\"nextbutton\" action=\"admin.php\" method=\"post\">\n";
-  echo "  <button type=\"submit\" name=\"nextButton\">weiter</button>\n";
+  echo "<form action=\"admin.php\" method=\"post\">\n";
+  echo "  <button type=\"submit\" name=\"nextbutton\" class=\"backbutton\">weiter</button>\n";
   echo "</form>";
 }
 
 function zurückbuttonadmin(){
   echo "<form action=\"admin.php\" method=\"post\">\n";
-  echo "  <button type=\"submit\" name=\"backButton\" class=\"backbutton\">zurück</button>\n";
+  echo "  <button type=\"submit\" name=\"backbutton\" class=\"backbutton\">zurück</button>\n";
   echo "</form>";
 }
 
 function zurückbutton(){
   echo "<form  action=\"index.php\" method=\"post\">\n";
-  echo "  <button type=\"submit\" name=\"backButton\" class=\"backbutton\">zurück</button>\n";
+  echo "  <button type=\"submit\" name=\"backbutton\" class=\"backbutton\">zurück</button>\n";
   echo "</form>";
 }
 
