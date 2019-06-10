@@ -161,6 +161,7 @@ function kategoryselection() {
 //Funktion für das Quit auf Mittelerem Schwerikeitsgrad
 function quizmittel ()
 {
+  global $AktuellKategorieName;
   global $FragenArray;
           if (mysqli_num_rows ($FragenArray) > 0)
               {
@@ -170,6 +171,9 @@ function quizmittel ()
                    {
           echo "<h2>Quiz (Mittel)</h2>";
           echo "<hr>";
+          echo "<div id=\"kategoriename\">";
+          echo "(".$AktuellKategorieName.")";
+          echo "</div>";
           echo "<form class=\"question\" action=\"index.php\" method=\"post\">\n";
           echo "  <table>\n";
           echo "    <tr>\n";
@@ -245,6 +249,7 @@ function quizleicht ()
 //Funktion für das Quiz auf Schwer
 function quizschwer ()
 {
+  global $Category;
   global $FragenArray;
           if (mysqli_num_rows ($FragenArray) > 0)
               {
@@ -317,14 +322,14 @@ function weiterbuttonadmin(){
 }
 
 function zurückbuttonadmin(){
-  echo "<form class=\"backbutton\" action=\"admin.php\" method=\"post\">\n";
-  echo "  <button type=\"submit\" name=\"backButton\">zurück</button>\n";
+  echo "<form action=\"admin.php\" method=\"post\">\n";
+  echo "  <button type=\"submit\" name=\"backButton\" class=\"backbutton\">zurück</button>\n";
   echo "</form>";
 }
 
 function zurückbutton(){
-  echo "<form class=\"backbutton\" action=\"index.php\" method=\"post\">\n";
-  echo "  <button type=\"submit\" name=\"backButton\">zurück</button>\n";
+  echo "<form  action=\"index.php\" method=\"post\">\n";
+  echo "  <button type=\"submit\" name=\"backButton\" class=\"backbutton\">zurück</button>\n";
   echo "</form>";
 }
 

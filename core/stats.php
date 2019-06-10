@@ -66,9 +66,16 @@ $prozentwert2 = $questionsWrong / $Gesamtwert * 100;
 $ende_kreissegment_2 = $grad_je_prozent * ($prozentwert1 + $prozentwert2);
 imagefilledarc($bild, 200, 150,250, 250, $anfang_kreissegment_2,$ende_kreissegment_2 , $rot, IMG_ARC_PIE);
 
+//Ausgabe in Textform
+echo "<div id=\"score\">";
+echo "Sie haben ".$questionsRight." Fragen von ".$Gesamtwert." richtig beantwortet. Leider waren ".$questionsWrong." Fragen falsch";
+echo "</div>";
+
 //Ausgeben
 imagepng($bild, "./img/statistikkreis.png");
+echo "<div id=\"flex\">";
 echo "<img src=\"./img/statistikkreis.png\">";
+echo "</div>";
 
 //Beginn Highscore
 //Abfrage der Score jeden User beginnend mit dem Höhsten Score
@@ -77,7 +84,7 @@ $HighScoreArray = mysqli_query ($db_link, $DatenbankAbfrageHighScore);
 $Platz = 0;
 
 echo "<h2>Highscore<h2>";
-echo "<table>\n";
+echo "<table class=\"scoretable\">\n";
 echo "  <tr>\n";
 echo "    <th>Platz</th>\n";
 echo "    <th>Name</th>\n";
@@ -97,8 +104,6 @@ if (mysqli_num_rows ($ScoreArray) > 0)
         }
 }
 echo "</table>";
-
-
-
+echo "<br>";
 zurückbutton();
 ?>

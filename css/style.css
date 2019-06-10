@@ -138,14 +138,49 @@ article table {
   border: 1px solid #e6e6e6;
 }
 
+
+#flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#score {
+  text-align: center;
+}
+
+#kategoriename {
+  text-align: center;
+}
+
+.manageuser tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.scoretable{
+  text-align: center;
+}
+
+.scoretable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+.backbutton {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff8800;
+    border-color: #e68a00;
+    font-weight: bold;
+}
+
 .questiontable {
   border: none;
   text-align: center;
 }
 
 .questiontable tr:nth-child(even) {
-  background-color: #f2f2f2;} {
-
+  background-color: #f2f2f2;
 }
 
 .questiontable th {
@@ -207,8 +242,10 @@ aside button {
 }
 
 footer {
-	background-color: black;
-  padding: 25px;
+      background-color:black;
+      color: white;
+      padding: 15px;
+      text-align: center;
 }
 
 /* Button CSS by https://codepen.io/ben_jammin/*/

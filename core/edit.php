@@ -48,7 +48,7 @@ elseif (isset($_POST['newquestion'])) {
   $KategorieArray = mysqli_query ($db_link, $DatenbankAbfrageKategorien);
 
   echo "<h2>Frage erstellen</h2>\n";
-  echo "<hr";
+  echo "<hr>";
   echo "<form class=\"createquestion\" action=\"admin.php\" method=\"post\">\n";
   echo "  <table>\n";
   echo "    <tr>\n";
@@ -306,8 +306,10 @@ elseif (isset($_POST['newquestion'])) {
     $DatenbankAbfrageUser= "SELECT * FROM users";
     $UserArray = mysqli_query ($db_link, $DatenbankAbfrageUser);
 
+    echo "<h2>User bearbeiten</h2>\n";
+    echo "<hr>";
     echo "<form class=\"edituser\" action=\"admin.php\" method=\"post\">\n";
-    echo "  <table>\n";
+    echo "  <table class=\"manageuser\">\n";
     echo "    <tr>\n";
     echo "      <th>User Name</th>\n";
     echo "      <th>Email</th>\n";
@@ -555,7 +557,7 @@ elseif (isset($_POST['newquestion'])) {
       echo "</table>";
     }
 
-//ende Bereich Defailt //Anfang Bereiche Default /////////////////////////////////////////////////////////////////////////////////////////
+//ende Bereich Defailt /////////////////////////////////////////////////////////////////////////////////////////
 
   }
 }

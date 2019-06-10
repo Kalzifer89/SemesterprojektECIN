@@ -8,6 +8,29 @@
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
 
+//Kategorie in Variable speichern
+$AktuelleKategorie = $_COOKIE['category'];
+
+//Wenn Aktuelle Kategorie Alle ausgewählt ist, das direkt in Variable schreiben
+if ($_COOKIE['category'] == "alle") {
+  $AktuellKategorieName = "alle Kategorien";
+}
+//Ansonsten den Namen aus der Datenbank suchen und Abspeichern.
+else {
+  $DatenbankAbfrageAktuelleKategorie = "SELECT categoryName FROM categorys WHERE $AktuelleKategorie = categoryID";
+  $KategorieAktuellArray = mysqli_query ($db_link, $DatenbankAbfrageAktuelleKategorie);
+  if (mysqli_num_rows ($KategorieAktuellArray) > 0)
+      {
+  // aktuelles Tupel ausgeben --------------------------------------------------
+          while ($zeile = mysqli_fetch_array($KategorieAktuellArray))
+           {
+             $AktuellKategorieName = $zeile['categoryName'];
+           }
+      }
+}
+
+
+
 //Wenn Schwerikeitsgrad gewählt, diesen in Cookie speichern
 if (isset($_POST['Schwerikeitsgrad']) ) {
             setcookie("Schwerikeitsgrad", $_POST['Schwerikeitsgrad'], 0);

@@ -8,7 +8,5 @@
 // Version      : 1.0                        //
 ///////////////////////////////////////////////
 
-echo "      <a href=\"url\">FAQ</a>\n";
-echo "      <a href=\"url\">Impressum</a>\n";
-
+echo "Svens Quiz - Eine Prüfungsleistung für Echtzeitanwendungen im Internet - Modulverantwortlicher Dieter Haas";
 ?>
