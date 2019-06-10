@@ -113,6 +113,8 @@ echo "<table>\n";
 echo "  <form class=\"\" action=\"index.php\" method=\"post\">\n";
 echo "  <tr>\n";
 echo "    <td><button type=\"submit\" name=\"back\" class=\"backbutton\">Zurück</button></td>\n";
+echo "  </form>\n";
+echo "  <form class=\"\" action=\"index.php\" method=\"post\" target=\"_blank\">\n";
 echo "    <td><button type=\"submit\" name=\"PDF\" class=\"backbutton\">PDF erstellen</button></td>\n";
 echo "  </tr>\n";
 echo "<input type=\"hidden\" name=\"stats\" value=\"stats\">";

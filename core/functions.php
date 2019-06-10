@@ -108,6 +108,7 @@ function registerArea()
   echo "  </tr>\n";
   echo "  <tr>\n";
   echo "    <td><input type=\"submit\" name=\"register\" class=\"button\"  value=\"Absenden\">\n</td>";
+  echo "    <td><input type=\"submit\" class=\"button\"  value=\"zurück\">\n</td>";
   echo "  </tr>\n";
   echo "</form>\n";
   echo "</table>\n";

@@ -224,6 +224,11 @@ article table {
   color: green;
 }
 
+.error {
+  background-color: red;
+  color: white;
+}
+
 .faqanswer {
   padding: 50px;
   border: 1px solid grey;

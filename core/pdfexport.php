@@ -11,7 +11,7 @@
 
 //Abwandlung des Codes von https://www.php-einfach.de/experte/php-codebeispiele/pdf-per-php-erstellen-pdf-rechnung/
 
-
+//Versucht sonst einen Fehler mit TCPDF
 error_reporting(0); //hide php errors
 
 include '../config/config.php';

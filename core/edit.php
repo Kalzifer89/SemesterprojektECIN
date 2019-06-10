@@ -491,12 +491,24 @@ elseif (isset($_POST['newquestion'])) {
       }
       else {
         $category = $_POST['newcategory'];
-        $DatenbankEintragCategory = "INSERT INTO categorys (categoryName) VALUES ('$category')";
-        $Eintragen = mysqli_query ($db_link, $DatenbankEintragCategory);
-        echo "<h2>Kategorie erstellen</h2>\n";
-        echo "<hr>";
-        echo "<h3 class=\"sucess\">Kategorie erfolgreich erstellt</h3>";
-        weiterbuttonadmin();
+        //Überprüfen ob Kategory schon existiert
+        $DatenbankKategoryCheck = "SELECT categoryName FROM categorys WHERE categoryName = '$category'";
+        $Prüfung = mysqli_query ($db_link, $DatenbankKategoryCheck);
+        if (mysqli_num_rows ($Prüfung ) > 0)
+            {
+              echo "<h2>Kategorie erstellen</h2>\n";
+              echo "<hr>";
+              echo "<h3 class=\"error\">Leider gibt es schon eine Kategorie mit gleichem Namen, wählen sie bitte einen anderen.</h3>";
+              weiterbuttonadmin();
+            }
+            else {
+                      $DatenbankEintragCategory = "INSERT INTO categorys (categoryName) VALUES ('$category')";
+                      $Eintragen = mysqli_query ($db_link, $DatenbankEintragCategory);
+                      echo "<h2>Kategorie erstellen</h2>\n";
+                      echo "<hr>";
+                      echo "<h3 class=\"sucess\">Kategorie erfolgreich erstellt</h3>";
+                      weiterbuttonadmin();
+            }
       }
   }
 

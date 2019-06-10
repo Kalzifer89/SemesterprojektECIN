@@ -45,11 +45,21 @@ if(empty ($_POST['registername']) && empty ($_POST['registeremail']) && empty ($
     $RegisterFehlermeldung  ="Ergebniss ist Falsch";
     }
   else {
-    $RegisterFehlermeldung ="Sie sind erfolgreich eingelogt, bitte melden sie sich jetzt an.";
-    //Den neuen User in die Datenbank eintragen
-    $DatenbankRegistierungUser = "INSERT INTO users (UserName, userMail, userPassword, userAdmin) VALUES ('$registername','$registermail','$registerpassword',0)";
-    $UserArray = mysqli_query ($db_link, $DatenbankRegistierungUser);
-    echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
+        //Überprüfen ob User schon exiistiert
+    $username = $_POST['registername'];
+    $DatenbankUserCheck = "SELECT userName FROM users WHERE userName = '$username'";
+    $Prüfung = mysqli_query ($db_link, $DatenbankUserCheck);
+    if (mysqli_num_rows ($Prüfung ) > 0)
+        {
+          $RegisterFehlermeldung = "Leider gibt es schon einen User mit gleichem Namen, wählen sie bitte einen anderen.";
+        }
+    else {
+          $RegisterFehlermeldung ="Sie sind erfolgreich eingelogt, bitte melden sie sich jetzt an.";
+          //Den neuen User in die Datenbank eintragen
+          $DatenbankRegistierungUser = "INSERT INTO users (UserName, userMail, userPassword, userAdmin) VALUES ('$registername','$registermail','$registerpassword',0)";
+          $UserArray = mysqli_query ($db_link, $DatenbankRegistierungUser);
+          echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
+    }
   }
 
 ?>
