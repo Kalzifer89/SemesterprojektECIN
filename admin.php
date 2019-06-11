@@ -39,7 +39,7 @@ echo "        <article>";
               include './core/edit.php';
 echo "        </article>\n";
 echo "        <aside>";
-//               // include './core/sidebar2.php';
+              // include './core/sidebar2.php';
 echo "        </aside>\n";
 echo "    </div>\n";
 echo "    <footer>\n";

@@ -77,10 +77,10 @@ if(isset($_POST['Anmelden'])){
       $Fehlermeldung ="Passwort nicht in Datenbank";
     }
     elseif (empty($_POST['captcha'])) {
-      $Fehlermeldung ="Das Ergebniss muss eingeben werden";
+      $Fehlermeldung ="Das Ergebnis muss eingeben werden";
     }
     elseif($_POST['captcha'] !=$_SESSION['ergebnis']) {
-      $Fehlermeldung ="Ergebniss ist Falsch";
+      $Fehlermeldung ="Ergebnis ist Falsch";
       }
     else {
       $Fehlermeldung ="Sie sind erfolgreich eingelogt";

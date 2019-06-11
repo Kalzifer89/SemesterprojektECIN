@@ -106,7 +106,7 @@ elseif (isset($_POST['newquestion'])) {
   echo "    <tr>\n";
   echo "      <td></td>\n";
   echo "      <td>:</td>\n";
-  echo "      <td><button type=\"submit\" name=\"questionentry\">Frage eintragen</button></td>\n";
+  echo "      <td><button type=\"submit\" name=\"questionentry\"class=\"button\">Frage eintragen</button></td>\n";
   echo "    </tr>\n";
   echo "  </table>\n";
   echo "</form>";
@@ -518,9 +518,105 @@ elseif (isset($_POST['newquestion'])) {
     echo "<hr>";
     echo "<form class=\"newcategory\" action=\"admin.php\" method=\"post\">\n";
     echo "  <input type=\"text\" name=\"newcategory\" value=\"Kategoryname\">\n";
-    echo "  <button type=\"submit\" name=\"createcategory\">Absenden</button>\n";
+    echo "  <button type=\"submit\" name=\"createcategory\" class=\"button\">Absenden</button>\n";
     echo "</form>";
     zurückbuttonadmin();
+  }
+
+
+
+
+  //Wenn Kategorien bearbeitet werden sollen
+
+  //Wenn die Kategorie gemanged werden sollen
+  elseif (isset($_POST['managecategory'])) {
+    //Datenbankabfrage nach allen Kategorien
+    $DatenbankAbfrageCategorys= "SELECT * FROM categorys";
+    $CategoryArray = mysqli_query ($db_link, $DatenbankAbfrageCategorys);
+
+    echo "<h2>Kategorien bearbeiten</h2>\n";
+    echo "<hr>";
+    echo "<form class=\"edituser\" action=\"admin.php\" method=\"post\">\n";
+    echo "  <table class=\"manageuser\">\n";
+    echo "    <tr>\n";
+    echo "      <th>Kategorie ID</th>\n";
+    echo "      <th>Kategorie Name</th>\n";
+    echo "      <th></th>\n";
+    echo "      <th></th>\n";
+    echo "    </tr>\n";
+    while ($zeile = mysqli_fetch_array($CategoryArray))
+        {
+        echo "    <tr>\n";
+        echo "      <td>".$zeile['categoryID']."</td>\n";
+        echo "      <td>".$zeile['categoryName']."</td>\n";
+        echo "      <td><button type=\"submit\" name=\"categorybearbeiten\" value=\"".$zeile['categoryID']."\" ><img src=\"./img/bearbeiten.png\" alt=\"bearbeiten\"></button></td>\n";
+        echo "    </tr>\n";
+        }
+    echo "  </table>\n";
+    echo "</form>";
+    zurückbuttonadmin();
+  }
+
+  //Wenn Kategory zum Bearbeiten Ausgewählt ist
+  elseif (isset($_POST['categorybearbeiten'])) {
+    //Variable Übernehmen
+    $KategorieID = $_POST['categorybearbeiten'];
+    //Abfrage nach einzelner Frage aus der Datenbank
+    $DatenbankAbfrageKategorie= "SELECT * FROM categorys WHERE categoryID = '$KategorieID'";
+    $KategorieArray = mysqli_query ($db_link, $DatenbankAbfrageKategorie);
+    echo "<h2>Kategorien bearbeiten</h2>\n";
+    echo "<hr>";
+    echo "<form class=\"edituser\" action=\"admin.php\" method=\"post\">\n";
+    echo "  <table class=\"manageuser\">\n";
+    echo "    <tr>\n";
+    echo "      <th>Kategorie ID</th>\n";
+    echo "      <th>Kategorie Name</th>\n";
+    echo "      <th></th>\n";
+    echo "      <th></th>\n";
+    echo "    </tr>\n";
+    while ($zeile = mysqli_fetch_array($KategorieArray))
+        {
+        echo "    <tr>\n";
+        echo "      <td>".$zeile['categoryID']."</td>\n";
+        echo "      <td><input type=\"text\" name=\"categoryname\"value=\"".$zeile['categoryName']."\"></td>\n";
+        echo "      <td><button type=\"submit\" name=\"changecategory\" class=\"button\">Absenden</button>\n</td>";
+        echo "      <input type=\"hidden\" name=\"categoryID\" value=\"".$zeile['categoryID']."\">";
+        echo "    </tr>\n";
+        }
+    echo "  </table>\n";
+    echo "</form>";
+    zurückbuttonadmin();
+  }
+
+  //Wenn das Kategory ändern Formular Ausgefüllt ist
+  elseif (isset($_POST['changecategory'])) {
+    //Wenn keine Kategory eingetragen wurde, fehlermeldung ausgeben
+      if(empty ($_POST['categoryname'])) {
+        echo "Sie müssen einen Category namen eingeben. Ihre Kategegory wurde nicht geändert.";
+      }
+      else {
+        $category = $_POST['categoryname'];
+        $categoryID = $_POST['categoryID'];
+        //Überprüfen ob Kategory schon existiert
+        $DatenbankKategoryCheck = "SELECT categoryName FROM categorys WHERE categoryName = '$category'";
+        $Prüfung = mysqli_query ($db_link, $DatenbankKategoryCheck);
+        if (mysqli_num_rows ($Prüfung ) > 0)
+            {
+              echo "<h2>Kategorie ändern</h2>\n";
+              echo "<hr>";
+              echo "<h3 class=\"error\">Leider gibt es schon eine Kategorie mit gleichem Namen, wählen sie bitte einen anderen.</h3>";
+              weiterbuttonadmin();
+            }
+            else {
+              //Eintrag in Datenbank Updaten und Erfolgsmeldung ausgeben
+                      $DatenbankEintragCategory = "UPDATE categorys SET categoryName = '$category' WHERE categoryID = '$categoryID'";
+                      $Eintragen = mysqli_query ($db_link, $DatenbankEintragCategory);
+                      echo "<h2>Kategorie ändern</h2>\n";
+                      echo "<hr>";
+                      echo "<h3 class=\"sucess\">Kategorie erfolgreich geändert</h3>";
+                      weiterbuttonadmin();
+            }
+      }
   }
 
 //Ende Bereiche Kategorien /////////////////////////////////////////////////////////////////////////////////////////
@@ -541,7 +637,7 @@ elseif (isset($_POST['newquestion'])) {
       echo "<h2>Kategorie erstellen</h2>\n";
       echo "<hr>\n";
       echo "<form class=\"newcategory\" action=\"admin.php\" method=\"post\">\n";
-      echo "<button type=\"submit\" name=\"newcategory\" class=\"answer\">Neue Kategorie ersellen</button>  \n";
+      echo "<button type=\"submit\" name=\"managecategory\" class=\"answer\">Kategorien bearbeiten</button>  \n";
       echo "</form>\n";
       echo "<hr>\n";
       echo "<h2>Fragen</h2>\n";

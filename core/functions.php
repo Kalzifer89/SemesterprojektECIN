@@ -55,8 +55,8 @@ function loginArea()
   echo "              <td><img src =\"./img/captcha.png\" alt=\"Captcha\"></td>\n";
   echo "            </tr>\n";
   echo "            <tr>\n";
-  echo "              <td>Ergebniss eingeben:</td>\n";
-  echo "              <td><input type=\"text\" name=\"captcha\" value=\"Eingabe Ergebniss\"></td>\n";
+  echo "              <td>Ergebnis eingeben:</td>\n";
+  echo "              <td><input type=\"text\" name=\"captcha\" value=\"Eingabe Ergebnis\"></td>\n";
   echo "            </tr>\n";
   echo "            <tr>\n";
   echo "              <td><button name=\"Anmelden\" class=\"button\" type=\"submit\">Anmelden</button>\n</td>\n";
@@ -103,12 +103,12 @@ function registerArea()
   echo "    <td><img src =\"./img/captcha.png\" alt=\"Captcha\"></td>\n";
   echo "  </tr>\n";
   echo "  <tr>\n";
-  echo "    <td>Ergebniss eingeben:</td>\n";
-  echo "    <td><input type=\"text\" name=\"captcha\" value=\"Eingabe Ergebniss\"></td>\n";
+  echo "    <td>Ergebnis eingeben:</td>\n";
+  echo "    <td><input type=\"text\" name=\"captcha\" value=\"Eingabe Ergebnis\"></td>\n";
   echo "  </tr>\n";
   echo "  <tr>\n";
-  echo "    <td><input type=\"submit\" name=\"register\" class=\"button\"  value=\"Absenden\">\n</td>";
   echo "    <td><input type=\"submit\" class=\"button\"  value=\"zurück\">\n</td>";
+  echo "    <td><input type=\"submit\" name=\"register\" class=\"button\"  value=\"Absenden\">\n</td>";
   echo "  </tr>\n";
   echo "</form>\n";
   echo "</table>\n";
@@ -143,7 +143,7 @@ function schwerikeitsgrad()
 //Funktion um den Schwerikeitsgrad in kurz auszuwählen
 function schwerikeitsgradkurz()
 {
-  echo "<h3>Schwerigkeitsgrad</h3>\n";
+  echo "<h3>Schwierigkeitsgrad</h3>\n";
   echo "<hr>";
   echo "<form class=\"Schwerikeitsgrad\" action=\"index.php\" method=\"post\">\n";
   echo "<button type=\"submit\" name=\"Schwerikeitsgrad\" class=\"difficultyeasy\" value=\"leicht\">leicht</button>  \n";

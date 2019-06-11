@@ -58,7 +58,7 @@ if(empty ($_POST['registername']) && empty ($_POST['registeremail']) && empty ($
           //Den neuen User in die Datenbank eintragen
           $DatenbankRegistierungUser = "INSERT INTO users (UserName, userMail, userPassword, userAdmin) VALUES ('$registername','$registermail','$registerpassword',0)";
           $UserArray = mysqli_query ($db_link, $DatenbankRegistierungUser);
-          echo "<meta http-equiv=\"refresh\" content=\"1; URL=index.php\">";
+          echo "<meta http-equiv=\"refresh\" content=\"5; URL=index.php\">";
     }
   }
 

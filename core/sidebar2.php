@@ -48,6 +48,7 @@ if (isset($_COOKIE['UserID'])) {
           }
 
         }
+        //Buttons ausgeben
         echo "<br>";
         statsbutton();
         echo"<hr>";
