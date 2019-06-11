@@ -12,8 +12,8 @@
 function anzeige()
 {
   // zwei zufällige Zahlen ermitteln -------
-  $_SESSION['wert1'] = rand(0,10);
-  $_SESSION['wert2'] = rand(0,10);
+  $_SESSION['wert1'] = rand(0,50);
+  $_SESSION['wert2'] = rand(0,50);
   // Berechnung des Ergebnisses ------------
   $_SESSION['ergebnis'] = $_SESSION['wert1'] + $_SESSION['wert2'];
 }

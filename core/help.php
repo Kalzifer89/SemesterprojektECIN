@@ -20,5 +20,8 @@ echo "<br>";
 echo "<h3>Wie kann ich mir meine Statistik Anzeigen lassen?</h3>";
 echo "<div class=\"faqanswer\">Sie können jederzeit in der Menü Leiste auf Statistik klicken oder den Statistik knopf an der Seite benutzen um ihre Statisk anzusehen und als PFD herunterzuladen.</div>";
 echo "<br>";
+echo "<h3>Wie kann ich mich als Admin anmelden?</h3>";
+echo "<div class=\"faqanswer\">Falls sie über Admin rechte verfügen, können sie über das Haupt Menü im oberen Bereich in den Admin Bereich gelangen.</div>";
+echo "<br>";
 zurückbutton();
 ?>
