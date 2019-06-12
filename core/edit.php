@@ -634,10 +634,11 @@ elseif (isset($_POST['newquestion'])) {
       echo "<button type=\"submit\" name=\"manageuser\" class=\"answer\">User bearbeiten</button>  \n";
       echo "</form>\n";
       echo "<hr>\n";
-      echo "<h2>Kategorie erstellen</h2>\n";
+      echo "<h2>Kategorien</h2>\n";
       echo "<hr>\n";
       echo "<form class=\"newcategory\" action=\"admin.php\" method=\"post\">\n";
       echo "<button type=\"submit\" name=\"managecategory\" class=\"answer\">Kategorien bearbeiten</button>  \n";
+      echo "<button type=\"submit\" name=\"newcategory\" class=\"answer\">Kategorien erstellen</button>  \n";
       echo "</form>\n";
       echo "<hr>\n";
       echo "<h2>Fragen</h2>\n";
